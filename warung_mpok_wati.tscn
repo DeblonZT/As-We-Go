@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c33darsfltjef"]
+
+[ext_resource type="Script" uid="uid://odrf3nvrlki1" path="res://warung_mpok_wati.gd" id="1_ktfgr"]
+
+[node name="WarungMpokWati" type="Control" unique_id=596983398]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ktfgr")
+
+[node name="Button" type="Button" parent="." unique_id=1281807365]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 194.0
+offset_right = 429.0
+offset_bottom = 225.0
+text = "Beli Bahan Cilok (Rp5.000)"
+
+[node name="LabelInfo" type="Label" parent="." unique_id=1076400202]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 54.0
+offset_right = 135.0
+offset_bottom = 77.0
+
+[node name="LabelUang" type="Label" parent="." unique_id=1600702877]
+visible = false
+layout_mode = 0
+offset_left = 476.0
+offset_top = 27.0
+offset_right = 516.0
+offset_bottom = 50.0
+
+[node name="Kembali ke map" type="Button" parent="." unique_id=1701077550]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 327.0
+offset_right = 136.0
+offset_bottom = 358.0
+text = "Kembali Ke Map"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Kembali ke map" to="." method="_on_kembali_ke_map_pressed"]
