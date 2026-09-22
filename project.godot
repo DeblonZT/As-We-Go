@@ -1,3 +1,11 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=5
 
 [application]
@@ -11,6 +19,9 @@ config/icon="res://icon.svg"
 
 DialogBox="*uid://cypv1t8lf0xrg"
 TransitionScreen="*uid://ctl5x1bee33yc"
+Global="*uid://b0fn6uoy450k5"
+Cerita="*uid://broxenu8a7qr6"
+MainUI="*uid://cbr6rona2tcq6"
 
 [display]
 

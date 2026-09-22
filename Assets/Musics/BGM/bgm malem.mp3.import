@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://efcbw57aexei"
+path="res://.godot/imported/bgm malem.mp3-c483a1a43633a22e811e1a8607ce0863.mp3str"
+
+[deps]
+
+source_file="res://Assets/Musics/BGM/bgm malem.mp3"
+dest_files=["res://.godot/imported/bgm malem.mp3-c483a1a43633a22e811e1a8607ce0863.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

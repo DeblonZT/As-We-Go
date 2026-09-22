@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# Isi id_npc di Inspector per instance ("mama", "pandu", dst).
+# Harus sama persis dengan key di DataDialog.DIALOG_NPC.
+@export var id_npc: String = "pandu"
 @export var gambar_portrait_npc: Texture2D
 @export var gambar_portrait_player: Texture2D
 @export var nama_npc: String = "Bang Pandu"
@@ -13,94 +16,98 @@ var player_di_area = false
 var sedang_dialog = false
 var player_ref = null
 
-var dialog_tree = {
-"start": [
-		{"speaker": "player", "text": "Bang Pandu, aku boleh minta tolong ngga?"},
-		{"speaker": "npc", "text": "Kamu minta Tolong apa Arka?"},
-		{"speaker": "player", "text": "Aku butuh uang untuk membeli barang yang kuinginkan"},
-		{"speaker": "player", "text": "Tapi uang ku tidak cukup untuk membelinya"},
-		{"speaker": "player", "text": "Abang bisa kasih aku uang ngga?"},
-		{"speaker": "npc", "text": "Waduhh, Abang aja belum gajian dek bulan ini hehe"},
-		{"speaker": "npc", "text": "Tapi kalo kamu mau uang Abang tau cara lain selain meminta"},
-		{"speaker": "player", "text": "Apa tuh bang caranya?"},
-		{"speaker": "npc", "text": "Beneran Kamu mau tau caranya?", "choices": [
-			{"text": "Mau lah bang", "next": "terima"},
-			{"text": "Nggak usah deh bang keburu males", "next": "tolak"}
-		]}
-	],
-	"terima": [
-		{"speaker": "npc", "text": "Mau tau banget nihh?"},
-		{"speaker": "player", "text": "Mau lah bang ishh ayolah bang kasih tau dong!"},
-		{"speaker": "npc", "text": "Hahahaha, oke oke, caranya adalah BERJUALAN"},
-	],
-	"tolak": [
-		{"speaker": "player", "text": "Ngga usah deh bang udah keburu males ini pasti mau ngejoks garing"},
-		{"speaker": "npc", "text": "Yaudah kalo ngga mau"},
-	]
-
-}
 
 func _ready():
 	if icon_e: icon_e.visible = false
 	area_bicara.body_entered.connect(_on_body_entered)
 	area_bicara.body_exited.connect(_on_body_exited)
 
+
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		player_di_area = true
 		player_ref = body
-		if icon_e and not sedang_dialog: icon_e.visible = true
+
 
 func _on_body_exited(body):
 	if body.is_in_group("Player"):
 		player_di_area = false
 		player_ref = null
-		if icon_e: icon_e.visible = false
+
 
 func _process(_delta):
-	if player_di_area and not sedang_dialog:
+	# Icon E hanya tampil kalau player di area, tidak sedang dialog,
+	# dan player sedang bebas (bukan lagi cutscene / dialog lain)
+	var bisa_bicara = player_di_area and not sedang_dialog and player_sedang_bebas()
+	if icon_e: icon_e.visible = bisa_bicara
+
+	if bisa_bicara:
 		if Input.is_action_just_pressed("ui_accept") or Input.is_key_pressed(KEY_E):
 			mulai_bicara()
 
-func hadap_ke_player():
-	if player_ref == null or animasi == null:
+
+func player_sedang_bebas() -> bool:
+	if player_ref == null:
+		return false
+	if "bisa_gerak" in player_ref:
+		return player_ref.bisa_gerak
+	return true
+
+
+func atur_gerak_player(player, nilai: bool):
+	if player == null:
 		return
-	var selisih_x = player_ref.global_position.x - global_position.x
-	if selisih_x > 0:
-		animasi.flip_h = false
-		animasi.play("diam_kanan")
-	else:
-		animasi.flip_h = true
-		animasi.play("diam_kanan")
+	if player.has_method("set_bisa_gerak"):
+		player.set_bisa_gerak(nilai)
+	elif "bisa_gerak" in player:
+		player.bisa_gerak = nilai
 
-func mulai_bicara():
-	sedang_dialog = true
-	if icon_e: icon_e.visible = false
 
-	hadap_ke_player()
+# Bisa dipanggil dari script lain (misal cutscene di rumah.gd)
+func hadap_ke_posisi(posisi: Vector2):
+	if animasi == null:
+		return
+	animasi.flip_h = posisi.x <= global_position.x
+	animasi.play("diam_kanan")
 
-	if player_ref:
-		if player_ref.has_method("set_bisa_gerak"):
-			player_ref.set_bisa_gerak(false)
-		elif "bisa_gerak" in player_ref:
-			player_ref.bisa_gerak = false
 
-	DialogBox.mulai_dialog(dialog_tree, gambar_portrait_npc, gambar_portrait_player, nama_npc, nama_player)
-	await DialogBox.dialog_selesai
+func hadap_ke_player():
+	if player_ref == null:
+		return
+	hadap_ke_posisi(player_ref.global_position)
 
-	if player_ref:
-		if player_ref.has_method("set_bisa_gerak"):
-			player_ref.set_bisa_gerak(true)
-		elif "bisa_gerak" in player_ref:
-			player_ref.bisa_gerak = true
-
-	kembalikan_idle()
-
-	sedang_dialog = false
-	if player_di_area and icon_e: icon_e.visible = true
 
 func kembalikan_idle():
 	if animasi == null:
 		return
 	animasi.flip_h = false
 	animasi.play("idle")
+
+
+func mulai_bicara():
+	var hari = Global.hari
+	var kunci = "%s_hari_%d" % [id_npc, hari]
+	var tree = DataDialog.ambil_dialog(id_npc, hari, Cerita.punya_flag(kunci))
+
+	if tree.is_empty():
+		push_warning("Dialog kosong untuk NPC '%s' di hari %d, cek DataDialog" % [id_npc, hari])
+		return
+
+	sedang_dialog = true
+	var player = player_ref  # simpan lokal, jaga-jaga player_ref jadi null di tengah dialog
+
+	hadap_ke_player()
+	atur_gerak_player(player, false)
+
+	DialogBox.mulai_dialog(tree, gambar_portrait_npc, gambar_portrait_player, nama_npc, nama_player)
+	await DialogBox.dialog_selesai
+
+	Cerita.set_flag(kunci)
+
+	# Ending gagal dipicu lewat "aksi" di dialog (misal Arka menolak tawaran Pandu)
+	if Cerita.punya_flag("ending_gagal"):
+		Cerita.mulai_ending_gagal()
+
+	atur_gerak_player(player, true)
+	kembalikan_idle()
+	sedang_dialog = false

@@ -3,7 +3,7 @@ extends Node2D
 @onready var player = $Player             
 
 @onready var house_interact_a = $HouseInteract
-@onready var house_interact_b = $HouseInteract2
+@onready var house_interact_b = $Portal
 # <-- tambahan untuk warung
 
 @onready var titik_tujuan_a = $TitikTujuan_A     

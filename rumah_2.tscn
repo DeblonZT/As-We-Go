@@ -19,10 +19,11 @@
 [ext_resource type="Script" uid="uid://ypf0bsoisa4d" path="res://portal_kelantai1.gd" id="16_64mfc"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="17_dp4hb"]
 [ext_resource type="Script" uid="uid://ts3jn4rd7k4" path="res://pandu.gd" id="19_8c4xb"]
-[ext_resource type="Texture2D" uid="uid://eof6d4ki0uon" path="res://Assets/bg_Character/ChatGPT Image 12 Agu 2026, 11.35.03.png" id="20_8c4xb"]
-[ext_resource type="Texture2D" uid="uid://bsngg83s03415" path="res://Assets/bg_Character/ChatGPT Image 11 Agu 2026, 14.06.06.png" id="21_yqsle"]
+[ext_resource type="Texture2D" uid="uid://bo4gkskgikav4" path="res://Assets/bg_Character/ChatGPT Image 20 Sep 2026, 11.27.41.png" id="20_8c4xb"]
+[ext_resource type="Texture2D" uid="uid://dyvln60kvkun5" path="res://Assets/bg_Character/ChatGPT Image Sep 20, 2026, 11_10_49 AM.png" id="21_8c4xb"]
 [ext_resource type="Texture2D" uid="uid://ctju3jgced2fw" path="res://Assets/Character/Bang Pandu.png" id="22_a1e4v"]
 [ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="23_eb54o"]
+[ext_resource type="Script" uid="uid://cf1548fd01rey" path="res://tempat_tidur.gd" id="24_jdu8w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e36hw"]
 texture = ExtResource("1_yseml")
@@ -1983,6 +1984,9 @@ height = 14.999992
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dhhh4"]
 size = Vector2(64.545425, 44.09091)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqsle"]
+size = Vector2(52, 50)
+
 [node name="Rumah_2" type="Node2D" unique_id=1505351384]
 y_sort_enabled = true
 
@@ -2036,7 +2040,7 @@ tile_set = SubResource("TileSet_gdp1g")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=184843424 groups=["Player"]]
 y_sort_enabled = true
-position = Vector2(276, 49)
+position = Vector2(269, 50)
 script = ExtResource("14_64mfc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=327493387]
@@ -2083,7 +2087,7 @@ position = Vector2(392, 213)
 scale = Vector2(1.1, 1.1)
 script = ExtResource("19_8c4xb")
 gambar_portrait_npc = ExtResource("20_8c4xb")
-gambar_portrait_player = ExtResource("21_yqsle")
+gambar_portrait_player = ExtResource("21_8c4xb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bang_pandu" unique_id=1474694628]
 scale = Vector2(1.1, 1.1)
@@ -2105,4 +2109,17 @@ shape = SubResource("RectangleShape2D_dhhh4")
 [node name="IconE" type="Sprite2D" parent="bang_pandu/AreaBicara" unique_id=1902277610]
 position = Vector2(0.35076904, -15.139206)
 scale = Vector2(0.27312624, 0.24582751)
+texture = ExtResource("17_dp4hb")
+
+[node name="TempatTidur" type="Area2D" parent="." unique_id=1914041798]
+position = Vector2(184, 180)
+script = ExtResource("24_jdu8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TempatTidur" unique_id=2114905426]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_yqsle")
+
+[node name="Sprite2D" type="Sprite2D" parent="TempatTidur" unique_id=1247195426]
+position = Vector2(1, -37)
+scale = Vector2(0.43261716, 0.41210938)
 texture = ExtResource("17_dp4hb")

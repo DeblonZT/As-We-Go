@@ -19,16 +19,18 @@ var sedang_dialog: bool = false
 var sedang_animasi: bool = false
 var bisa_lanjut: bool = false
 var menampilkan_pilihan: bool = false
-
+var hud_terlihat_sebelumnya: bool = false
 var gambar_npc: Texture2D
 var gambar_player: Texture2D
 var nama_npc: String = "NPC"
 var nama_player: String = "Kamu"
 
+
 signal dialog_selesai
 
 func _ready():
 	visible = false
+	
 	label.add_theme_color_override("default_color", Color.BLACK)
 	posisi_kotak_akhir = kotak.position
 	posisi_portrait_akhir = portrait.position
@@ -50,6 +52,7 @@ func mulai_dialog(tree: Dictionary, npc_texture: Texture2D = null, player_textur
 	nama_player = nama_player_baru
 	sedang_dialog = true
 	visible = true
+	sembunyikan_hud()
 
 	siapkan_portrait_awal()   # <- BARU: set texture yang benar SEBELUM slide jalan
 	await animasi_masuk()
@@ -98,6 +101,9 @@ func tampilkan_baris():
 	var speaker = baris.get("speaker", "npc")
 	label.text = baris.get("text", "")
 
+	if baris.has("aksi"):
+		Cerita.jalankan_aksi(baris["aksi"])
+		
 	if speaker == "npc":
 		nama_label.text = baris.get("nama", nama_npc)
 		if gambar_npc:
@@ -153,6 +159,27 @@ func tutup_dialog():
 	tween.tween_property(portrait, "position", posisi_portrait_awal, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	await tween.finished
 	visible = false
+	tampilkan_hud()
 	sedang_dialog = false
 	sedang_animasi = false
 	dialog_selesai.emit()
+	
+	
+func _cari_hud():
+	var hud = get_node_or_null("/root/MainUI")
+	if hud == null:
+		hud = get_node_or_null("/root/MainUi")
+	return hud
+
+func sembunyikan_hud():
+	var hud = _cari_hud()
+	if hud == null:
+		return
+	hud_terlihat_sebelumnya = hud.visible
+	hud.visible = false
+
+func tampilkan_hud():
+	var hud = _cari_hud()
+	if hud == null:
+		return
+	hud.visible = hud_terlihat_sebelumnya

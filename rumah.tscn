@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://chab1x8wa1om" path="res://Assets/Tilemap/interior free.png" id="1_kqxlc"]
 [ext_resource type="Script" uid="uid://78f0wr6nj2oi" path="res://rumah.gd" id="1_leoou"]
+[ext_resource type="Texture2D" uid="uid://dyvln60kvkun5" path="res://Assets/bg_Character/ChatGPT Image Sep 20, 2026, 11_10_49 AM.png" id="2_usq53"]
 [ext_resource type="Script" uid="uid://c6on3277iy336" path="res://states/player.gd" id="3_xmujd"]
 [ext_resource type="Texture2D" uid="uid://kbmyibs4j1ue" path="res://Assets/Arka - Player.png" id="4_l4n1j"]
 [ext_resource type="Texture2D" uid="uid://7ginw0253yoa" path="res://Assets/object_2/TopDownHouse_DoorsAndWindows.png" id="5_mk5jq"]
@@ -19,7 +20,6 @@
 [ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="14_n3e4i"]
 [ext_resource type="Texture2D" uid="uid://bthdqu1j5gpnl" path="res://Assets/bg_Character/bg_mamaArka.png" id="15_leoou"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="15_n3e4i"]
-[ext_resource type="Texture2D" uid="uid://bsngg83s03415" path="res://Assets/bg_Character/ChatGPT Image 11 Agu 2026, 14.06.06.png" id="16_kw0sh"]
 [ext_resource type="Script" uid="uid://duhm2e75d7x4j" path="res://portal_kelantai2.gd" id="18_fsyxg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bpxei"]
@@ -1645,6 +1645,7 @@ size = Vector2(65, 40)
 [node name="Rumah" type="Node2D" unique_id=1146691669]
 y_sort_enabled = true
 script = ExtResource("1_leoou")
+gambar_portrait_arka = ExtResource("2_usq53")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1288136029]
 offset_top = -66.0
@@ -1704,7 +1705,7 @@ position = Vector2(208.00003, 39.999996)
 scale = Vector2(1.1, 1.1)
 script = ExtResource("13_0r6kk")
 gambar_portrait_npc = ExtResource("15_leoou")
-gambar_portrait_player = ExtResource("16_kw0sh")
+gambar_portrait_player = ExtResource("2_usq53")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mama" unique_id=889876122]
 scale = Vector2(1.1, 1.1)
@@ -1746,6 +1747,7 @@ texture = ExtResource("15_n3e4i")
 [node name="Portal2" type="Area2D" parent="." unique_id=1018336055]
 position = Vector2(320, 54)
 script = ExtResource("18_fsyxg")
+butuh_flag = "uang_mama_diterima"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portal2" unique_id=962534827]
 position = Vector2(27, 9)
@@ -1770,3 +1772,6 @@ position = Vector2(343, 56)
 
 [node name="TitikBerhenti_B" type="Marker2D" parent="." unique_id=1325044789]
 position = Vector2(327, 243)
+
+[node name="TitikCutsceneMulai" type="Marker2D" parent="." unique_id=1400945241]
+position = Vector2(203, 204)

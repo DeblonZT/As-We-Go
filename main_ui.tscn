@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cbr6rona2tcq6"]
+
+[ext_resource type="Script" uid="uid://bmue0xj6hf1x" path="res://main_ui.gd" id="1_2ppmm"]
+
+[node name="MainUI" type="CanvasLayer" unique_id=202137311]
+process_mode = 3
+script = ExtResource("1_2ppmm")
+
+[node name="LabelUang" type="Label" parent="." unique_id=1479942216]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -346.0
+offset_top = 16.0
+offset_right = -51.0
+offset_bottom = 33.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+text = "Uang Arka:  "
+
+[node name="LabelWaktu" type="Label" parent="." unique_id=1727015127]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -696.0
+offset_right = -665.0
+offset_bottom = 17.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "06:00"
+
+[node name="LabelSesi" type="Label" parent="." unique_id=1791456917]
+visible = false
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 79.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 12
+text = "sesi: pagi"
+
+[node name="TimerWaktu" type="Timer" parent="." unique_id=1854099185]
+autostart = true
+
+[node name="LayarTransisi" type="TextureRect" parent="." unique_id=797283743]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[connection signal="timeout" from="TimerWaktu" to="." method="_on_timer_waktu_timeout"]
