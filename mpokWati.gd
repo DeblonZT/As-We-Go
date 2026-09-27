@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 @export var scene_tujuan: String = "res://warung_mpok_wati.tscn"
+@export var id_pintu_masuk: String = "warung"
 @onready var icon_e = $AreaPintu/IconE
 @onready var sprite = $SpriteRumah
 @onready var area_pintu = $AreaPintu
@@ -62,4 +63,7 @@ func masuk_rumah():
 		sprite.play("buka_pintu")
 		await sprite.animation_finished
 
-	TransitionScreen.transition_to(scene_tujuan)
+	if TransitionScreen:
+		TransitionScreen.transition_to(scene_tujuan, id_pintu_masuk)
+	else:
+		get_tree().change_scene_to_file(scene_tujuan)

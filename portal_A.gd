@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var scene_tujuan: String = "res://node_2d.tscn"
-@export var id_pintu_keluar: String = "node_2" # <-- Isi nama unik di Inspector (misal: "rumah_a", "rumah_b", dll)
+@export var id_pintu_keluar: String = "node_2d" # <-- Isi nama unik di Inspector (misal: "rumah_a", "rumah_b", dll)
 @onready var icon_e: Sprite2D = $Sprite2D
 @onready var titik_berhenti: Marker2D = $TitikBerhenti  
 

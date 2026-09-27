@@ -1,7 +1,9 @@
 extends Area2D
 
 @export var scene_tujuan: String = "res://node_2d.tscn"
-@export var id_pintu_keluar: String = "keluar" # <-- Isi nama unik di Inspector (misal: "rumah_a", "rumah_b", dll)
+@export var id_pintu_keluar: String = "keluar" # <-- Nama/ID spawn tujuan di scene tujuan
+@export var kembali_ke_scene_asal: bool = false # Jika true, balik otomatis ke scene sebelumnya
+
 @onready var icon_e: Sprite2D = $Sprite2D
 @onready var titik_berhenti: Marker2D = $TitikBerhenti  
 
@@ -69,8 +71,14 @@ func mulai_transisi_masuk() -> void:
 
 	await get_tree().create_timer(0.2).timeout
 
+	var target = scene_tujuan
+	var spawn = id_pintu_keluar
+	if kembali_ke_scene_asal and Global and Global.scene_sebelumnya != "":
+		target = Global.scene_sebelumnya
+		spawn = "warung_mw"
+
 	# KIRIM ID PINTU SAAT MELAKUKAN TRANSISI
 	if TransitionScreen:
-		TransitionScreen.transition_to(scene_tujuan, id_pintu_keluar)
+		TransitionScreen.transition_to(target, spawn)
 	else:
-		get_tree().change_scene_to_file(scene_tujuan)
+		get_tree().change_scene_to_file(target)

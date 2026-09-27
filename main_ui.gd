@@ -1,9 +1,9 @@
 extends CanvasLayer
 
 # Variabel waktu mulai
-var jam = 6
-var menit = 0
-var sesi = "Pagi"
+var jam = 17
+var menit = 50
+var sesi = "Sore"
 var sesi_sebelumnya = "Pagi" # Untuk melacak kapan sesi berubah
 
 # Menghubungkan script dengan node Label & Timer
@@ -45,6 +45,7 @@ func _ready():
 		layar_transisi.hide()
 	
 	update_ui()
+	putar_bgm_sesi(sesi)
 
 func _siapkan_node_audio():
 	if not has_node("AudioSFX"):
@@ -69,6 +70,10 @@ func _process(_delta):
 	# Memperbarui teks uang setiap saat agar selalu sinkron dengan Global
 	if label_uang:
 		label_uang.text = "Uang Arka: " + Global.format_rupiah(Global.uang)
+	
+	# Pastikan BGM tetap berputar bila berhenti tidak sengaja
+	if audio_bgm and not audio_bgm.playing and not get_tree().paused:
+		putar_bgm_sesi(sesi)
 
 func cek_sesi():
 	sesi_sebelumnya = sesi

@@ -97,11 +97,11 @@ func _mulai_game_baru_langsung() -> void:
 		continue_button.modulate = Color(1, 1, 1, 1.0)
 	
 	if MainUI:
-		MainUI.jam = 6
+		MainUI.jam = 20
 		MainUI.menit = 0
-		MainUI.sesi = "Pagi"
+		MainUI.sesi = "Malam"
 		MainUI.update_ui()
-		MainUI.putar_bgm_sesi("Pagi")
+		MainUI.putar_bgm_sesi("Sore")
 		MainUI.show()
 	
 	if TransitionScreen:

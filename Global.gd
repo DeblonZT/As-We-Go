@@ -2,11 +2,54 @@ extends Node
 
 const SAVE_PATH = "user://save_game.cfg"
 
-var uang: int = 0
-var hari: int = 0
+signal reputasi_berubah(nilai_baru: int)
+
+var uang: int = 100000
+var hari: int = 1
 var bahan_cilok: int = 0
 var cilok_matang: int = 0
+var es_teh_siap: int = 0
+var piscok_matang: int = 0
 var reputasi_pelanggan: int = 50
+
+func _process(_delta):
+	var scene_saat_ini = get_tree().current_scene
+	if is_instance_valid(scene_saat_ini) and scene_saat_ini is Node2D:
+		if not scene_saat_ini.has_meta("_spawner_terpasang"):
+			scene_saat_ini.set_meta("_spawner_terpasang", true)
+			call_deferred("_pasang_fitur_map", scene_saat_ini)
+
+func _pasang_fitur_map(scene_node: Node):
+	if not is_instance_valid(scene_node):
+		return
+	var nama_file_scene = scene_node.scene_file_path.get_file() if scene_node.scene_file_path else scene_node.name
+	
+	var daftar_map = ["node_2d.tscn", "map_2.tscn", "map_3.tscn", "map_4.tscn", "map_5.tscn"]
+	if nama_file_scene in daftar_map or "map" in nama_file_scene.to_lower() or nama_file_scene == "Node2D":
+		if not scene_node.has_node("SpawnerNpc"):
+			if ResourceLoader.exists("res://spawner_npc.tscn"):
+				var spawner_res = load("res://spawner_npc.tscn")
+				if spawner_res:
+					var spawner_inst = spawner_res.instantiate()
+					if nama_file_scene == "map_3.tscn":
+						spawner_inst.jumlah_npc = 6
+					else:
+						spawner_inst.jumlah_npc = 3
+					scene_node.add_child(spawner_inst)
+		
+		if nama_file_scene == "map_3.tscn":
+			if not scene_node.has_node("Booth"):
+				if ResourceLoader.exists("res://booth.tscn"):
+					var booth_res = load("res://booth.tscn")
+					if booth_res:
+						var booth_inst = booth_res.instantiate()
+						booth_inst.global_position = Vector2(420, 130) # Booth Arka di bagian atas (ada kompor & meja)
+						scene_node.add_child(booth_inst)
+
+func ubah_reputasi(jumlah: int) -> void:
+	reputasi_pelanggan = clampi(reputasi_pelanggan + jumlah, 0, 100)
+	reputasi_berubah.emit(reputasi_pelanggan)
+	print("Reputasi berubah: ", jumlah, " | Total reputasi: ", reputasi_pelanggan)
 
 # --- INVENTORY BAHAN ECERAN ---
 var terigu: int = 0
@@ -26,6 +69,8 @@ var waktu_adon: float = 5.0  # Kecepatan awal 5 detik
 # --- LOKASI SCENE TERAKHIR ---
 var scene_aktif: String = "res://rumah.tscn"
 var spawn_id_aktif: String = ""
+var scene_sebelumnya: String = ""      # dipakai portal warung untuk kembali otomatis ke map asal
+var spawn_id_sebelumnya: String = ""
 
 # --- FUNGSI TRANSAKSI BELANJA ---
 func beli_barang(nama_bahan: String, harga: int) -> bool:
@@ -129,6 +174,8 @@ func reset_data() -> void:
 	hari = 0
 	bahan_cilok = 0
 	cilok_matang = 0
+	es_teh_siap = 0
+	piscok_matang = 0
 	reputasi_pelanggan = 50
 	
 	terigu = 0
@@ -145,6 +192,10 @@ func reset_data() -> void:
 	
 	scene_aktif = "res://rumah.tscn"
 	spawn_id_aktif = ""
+	scene_sebelumnya = ""
+	spawn_id_sebelumnya = ""
+	
+	reputasi_berubah.emit(reputasi_pelanggan)
 	
 	var main_ui = Engine.get_main_loop().root.get_node_or_null("MainUI") if Engine.get_main_loop() else null
 	if main_ui:
@@ -167,6 +218,8 @@ func simpan_game() -> bool:
 	config.set_value("player", "hari", hari)
 	config.set_value("player", "bahan_cilok", bahan_cilok)
 	config.set_value("player", "cilok_matang", cilok_matang)
+	config.set_value("player", "es_teh_siap", es_teh_siap)
+	config.set_value("player", "piscok_matang", piscok_matang)
 	config.set_value("player", "reputasi_pelanggan", reputasi_pelanggan)
 	
 	# Simpan data inventori
@@ -193,6 +246,8 @@ func simpan_game() -> bool:
 	# Simpan scene & posisi
 	config.set_value("lokasi", "scene_aktif", scene_aktif)
 	config.set_value("lokasi", "spawn_id_aktif", spawn_id_aktif)
+	config.set_value("lokasi", "scene_sebelumnya", scene_sebelumnya)
+	config.set_value("lokasi", "spawn_id_sebelumnya", spawn_id_sebelumnya)
 	
 	var err = config.save(SAVE_PATH)
 	if err == OK:
@@ -218,6 +273,8 @@ func muat_game() -> bool:
 	hari = config.get_value("player", "hari", 1)
 	bahan_cilok = config.get_value("player", "bahan_cilok", 10)
 	cilok_matang = config.get_value("player", "cilok_matang", 0)
+	es_teh_siap = config.get_value("player", "es_teh_siap", 0)
+	piscok_matang = config.get_value("player", "piscok_matang", 0)
 	reputasi_pelanggan = config.get_value("player", "reputasi_pelanggan", 50)
 	
 	# Muat data inventori
@@ -248,6 +305,10 @@ func muat_game() -> bool:
 	# Muat lokasi
 	scene_aktif = config.get_value("lokasi", "scene_aktif", "res://rumah.tscn")
 	spawn_id_aktif = config.get_value("lokasi", "spawn_id_aktif", "")
+	scene_sebelumnya = config.get_value("lokasi", "scene_sebelumnya", "")
+	spawn_id_sebelumnya = config.get_value("lokasi", "spawn_id_sebelumnya", "")
+	
+	reputasi_berubah.emit(reputasi_pelanggan)
 	
 	var trans = Engine.get_main_loop().root.get_node_or_null("TransitionScreen") if Engine.get_main_loop() else null
 	if trans and spawn_id_aktif != "":

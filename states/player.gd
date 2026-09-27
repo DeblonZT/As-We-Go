@@ -11,6 +11,19 @@ signal sampai_tujuan
 func set_bisa_gerak(value: bool):
 	bisa_gerak = value
 
+func aktifkan_kontrol() -> void:
+	bisa_gerak = true
+	mode_cutscene = false
+
+func atur_arah_menghadap(arah_baru: String) -> void:
+	arah = arah_baru
+	if has_node("AnimatedSprite2D"):
+		arah_player(false)
+
+func mainkan_animasi(nama_anim: String) -> void:
+	if has_node("AnimatedSprite2D"):
+		$AnimatedSprite2D.play(nama_anim)
+
 func jalan_ke_titik(titik: Vector2):
 	titik_tujuan = titik
 	mode_cutscene = true

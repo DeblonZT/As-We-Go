@@ -16,7 +16,7 @@ const DIALOG_NPC = {
 				{"speaker": "npc", "text": "Hehe, tumben muji Mama. Ada maunya ya?"},
 				{"speaker": "player", "text": "Ih Mama tau aja. Padahal Mama tuh Mama terbaik sedunia!"},
 				{"speaker": "npc", "text": "Sudah, langsung bilang aja. Kamu mau apa, Arka?"},
-				{"speaker": "player", "text": "Aku pengin beli mainan yang di TV tadi, Mah. Harganya Rp800.000..."},
+				{"speaker": "player", "text": "Aku pengin beli mainan GUNDAM, Mah. Harganya Rp800.000..."},
 				{"speaker": "npc", "text": "Waduh, mahal banget, Ka. Mama cuma bisa bantu sedikit ya."},
 				{"speaker": "npc", "text": "Ini Rp20.000. Disimpan baik-baik, jangan dihambur-hamburkan.", "aksi": "beri_uang_20000"},
 				{"speaker": "player", "text": "Makasih, Mah! Aku coba tanya Bang Pandu dulu deh."}
@@ -60,7 +60,7 @@ const DIALOG_NPC = {
 				{"speaker": "player", "text": "Oke Bang, aku mau! Ayo kasih tau caranya!"},
 				{"speaker": "npc", "text": "Hahaha, oke oke. Caranya adalah... BERJUALAN!", "aksi": "terima_tawaran_pandu"},
 				{"speaker": "player", "text": "Jualan? Jualan apa, Bang?"},
-				{"speaker": "npc", "text": "Cilok! Abang kenal Pak Iwan, dia nyewain booth. Sewanya Rp10.000 per hari."},
+				{"speaker": "npc", "text": "Makanan! Abang kenal Pak Iwan, dia nyewain booth. Sewanya Rp10.000 per hari."},
 				{"speaker": "npc", "text": "Bahannya kamu beli di warung Mpok Wati, terus kamu masak, terus kamu jual ke pelanggan."},
 				{"speaker": "player", "text": "Modalku cuma Rp20.000 nih, Bang..."},
 				{"speaker": "npc", "text": "Makanya harus pinter ngatur. Untungnya kamu puterin lagi buat jadi modal."},
@@ -81,7 +81,8 @@ const DIALOG_NPC = {
 				{"speaker": "npc", "text": "Bagus! Langkah pertama: sewa booth dulu ke Pak Iwan. Sewanya Rp10.000 per hari."},
 				{"speaker": "player", "text": "Berarti modalku sisa Rp10.000 dong, Bang."},
 				{"speaker": "npc", "text": "Betul. Makanya hitung baik-baik, jangan asal keluar uang.", "aksi": "mulai_tutorial_booth"},
-				{"speaker": "npc", "text": "Pak Iwan ada di sekitar desa. Cari dia ya, Abang tunggu kabar baiknya!"}
+				{"speaker": "npc", "text": "Pak Iwan ada di sekitar desa. Cari dia ya, Rumahnya berwarna coklat di jalan 3!"},
+				{"speaker": "npc", "text": " Abang tunggu kabar baiknya!"}
 			]
 		},
 		2: {

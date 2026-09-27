@@ -13,7 +13,16 @@ func _ready():
 # Menggunakan variadic/array (...) agar fungsi ini fleksibel 
 # menerima 1 atau 2 argumen tanpa error 'Too many arguments'
 func transition_to(scene_path: String, spawn_id: String = "") -> void:
-	target_spawn_id = spawn_id
+	if spawn_id != "":
+		target_spawn_id = spawn_id
+	
+	if Global:
+		if Global.scene_aktif != "" and Global.scene_aktif != scene_path:
+			Global.scene_sebelumnya = Global.scene_aktif
+			Global.spawn_id_sebelumnya = target_spawn_id
+		Global.scene_aktif = scene_path
+		Global.spawn_id_aktif = target_spawn_id
+
 	print("Pindah ke scene: ", scene_path, " | Spawn ID: ", target_spawn_id)
 	
 	if anim.has_animation("fade_to_black"):

@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://cyso7qha4s5pu"]
+
+[ext_resource type="Script" path="res://minigame_masak.gd" id="1_masak"]
+
+[node name="MinigameMasak" type="CanvasLayer"]
+script = ExtResource("1_masak")
+
+[node name="PanelUtama" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -130.0
+offset_right = 220.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Label" parent="PanelUtama"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+text = "MEJA MASAK & Dapur BOOTH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TombolTutup" type="Button" parent="PanelUtama"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 32.0
+grow_horizontal = 0
+text = "X"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelUtama"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 35.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="LabelStok" type="Label" parent="PanelUtama/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "BAHAN: Terigu:0 | Teh:0 | Es:0 | Pisang:0 | Coklat:0 | Kulit:0"
+
+[node name="LabelHasil" type="Label" parent="PanelUtama/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "SIAP JUAL: Cilok:0 porsi | Es Teh:0 gelas | Piscok:0 porsi"
+
+[node name="BarProses" type="ProgressBar" parent="PanelUtama/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+show_percentage = true
+
+[node name="LabelStatus" type="Label" parent="PanelUtama/VBoxContainer"]
+layout_mode = 2
+text = "Pilih menu untuk dimasak/dibuat"
+horizontal_alignment = 1
+
+[node name="HBoxTombol" type="HBoxContainer" parent="PanelUtama/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TombolCilok" type="Button" parent="PanelUtama/VBoxContainer/HBoxTombol"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Masak Cilok"
+
+[node name="TombolEsTeh" type="Button" parent="PanelUtama/VBoxContainer/HBoxTombol"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buat Es Teh"
+
+[node name="TombolPiscok" type="Button" parent="PanelUtama/VBoxContainer/HBoxTombol"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Goreng Piscok"

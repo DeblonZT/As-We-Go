@@ -65,5 +65,6 @@ func masuk_rumah():
 		await sprite.animation_finished
 
 	if TransitionScreen:
-		TransitionScreen.target_spawn_id = id_pintu_masuk   # <- BARU: set id sebelum pindah scene
-	TransitionScreen.transition_to(scene_tujuan)
+		TransitionScreen.transition_to(scene_tujuan, id_pintu_masuk)
+	else:
+		get_tree().change_scene_to_file(scene_tujuan)

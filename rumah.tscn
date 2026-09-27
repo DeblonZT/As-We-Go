@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://chab1x8wa1om" path="res://Assets/Tilemap/interior free.png" id="1_kqxlc"]
 [ext_resource type="Script" uid="uid://78f0wr6nj2oi" path="res://rumah.gd" id="1_leoou"]
+[ext_resource type="Texture2D" uid="uid://d2foqlf58h73y" path="res://Assets/Picture1.png" id="2_kw0sh"]
 [ext_resource type="Texture2D" uid="uid://dyvln60kvkun5" path="res://Assets/bg_Character/ChatGPT Image Sep 20, 2026, 11_10_49 AM.png" id="2_usq53"]
 [ext_resource type="Script" uid="uid://c6on3277iy336" path="res://states/player.gd" id="3_xmujd"]
 [ext_resource type="Texture2D" uid="uid://kbmyibs4j1ue" path="res://Assets/Arka - Player.png" id="4_l4n1j"]
@@ -18,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://bm0rr380dgly4" path="res://Assets/Character/Mama Arka.png" id="13_isqus"]
 [ext_resource type="Script" uid="uid://t8wajbghayws" path="res://portal.gd" id="14_1x6fk"]
 [ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="14_n3e4i"]
-[ext_resource type="Texture2D" uid="uid://bthdqu1j5gpnl" path="res://Assets/bg_Character/bg_mamaArka.png" id="15_leoou"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="15_n3e4i"]
 [ext_resource type="Script" uid="uid://duhm2e75d7x4j" path="res://portal_kelantai2.gd" id="18_fsyxg"]
 
@@ -1642,9 +1642,13 @@ size = Vector2(64.545425, 39.09091)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5miy"]
 size = Vector2(65, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cajd"]
+size = Vector2(145, 28)
+
 [node name="Rumah" type="Node2D" unique_id=1146691669]
 y_sort_enabled = true
 script = ExtResource("1_leoou")
+gambar_portrait_tv = ExtResource("2_kw0sh")
 gambar_portrait_arka = ExtResource("2_usq53")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1288136029]
@@ -1704,7 +1708,6 @@ tile_set = SubResource("TileSet_hqnsr")
 position = Vector2(208.00003, 39.999996)
 scale = Vector2(1.1, 1.1)
 script = ExtResource("13_0r6kk")
-gambar_portrait_npc = ExtResource("15_leoou")
 gambar_portrait_player = ExtResource("2_usq53")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mama" unique_id=889876122]
@@ -1760,6 +1763,13 @@ texture = ExtResource("15_n3e4i")
 
 [node name="TitikBerhenti" type="Marker2D" parent="Portal2" unique_id=918143878]
 position = Vector2(25, -1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=135591982]
+position = Vector2(320, 54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=96527608]
+position = Vector2(9, 216)
+shape = SubResource("RectangleShape2D_5cajd")
 
 [node name="TitikTujuan_A" type="Marker2D" parent="." unique_id=127024055]
 position = Vector2(343, 56)

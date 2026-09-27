@@ -35,16 +35,16 @@ func spawn_normal() -> void:
 
 	if TransitionScreen:
 		match TransitionScreen.target_spawn_id:
-			"keluar":
+			"keluar", "pintu", "depan", "rumah", "luar":
 				# player masuk dari luar rumah -> spawn dekat pintu depan
 				aktif_titik_berhenti = titik_berhenti_b
 				aktif_titik_tujuan = titik_tujuan_b
-			"lantai_2":
+			"lantai_2", "tangga", "turun_tangga":
 				# player turun dari lantai 2 -> spawn dekat tangga
 				aktif_titik_berhenti = titik_berhenti_a
 				aktif_titik_tujuan = titik_tujuan_a
 			_:
-				push_warning("target_spawn_id gak dikenali di rumah.gd: '%s'" % TransitionScreen.target_spawn_id)
+				print("target_spawn_id '%s' memakai default pintu depan" % TransitionScreen.target_spawn_id)
 
 	if aktif_titik_berhenti and aktif_titik_tujuan:
 		player.global_position = aktif_titik_berhenti.global_position
