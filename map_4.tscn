@@ -4796,12 +4796,8 @@ position = Vector2(136, 36.000015)
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
-ukuran_tekstur = 128
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
-lebar_bawah = 0.461
-jarak_bawah_dari_tengah = 0.451
-lengkung_bawah = 0.2
 
 [node name="PointLight2D7" type="PointLight2D" parent="." unique_id=1697120557 groups=["LampuJalan"]]
 y_sort_enabled = true
@@ -4810,12 +4806,8 @@ position = Vector2(-72, 36.000004)
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
-ukuran_tekstur = 128
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
-lebar_bawah = 0.461
-jarak_bawah_dari_tengah = 0.451
-lengkung_bawah = 0.2
 
 [node name="PointLight2D8" type="PointLight2D" parent="." unique_id=1218110509 groups=["LampuJalan"]]
 y_sort_enabled = true
@@ -4824,12 +4816,8 @@ position = Vector2(-71.99999, 276)
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
-ukuran_tekstur = 128
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
-lebar_bawah = 0.461
-jarak_bawah_dari_tengah = 0.451
-lengkung_bawah = 0.2
 
 [node name="PointLight2D9" type="PointLight2D" parent="." unique_id=1718081411 groups=["LampuJalan"]]
 y_sort_enabled = true
@@ -4838,12 +4826,8 @@ position = Vector2(136, 275.99997)
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
-ukuran_tekstur = 128
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
-lebar_bawah = 0.461
-jarak_bawah_dari_tengah = 0.451
-lengkung_bawah = 0.2
 
 [node name="PointLight2D10" type="PointLight2D" parent="." unique_id=123155191 groups=["LampuJalan"]]
 y_sort_enabled = true
@@ -4852,12 +4836,8 @@ position = Vector2(376, 276.00003)
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
-ukuran_tekstur = 128
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
-lebar_bawah = 0.461
-jarak_bawah_dari_tengah = 0.451
-lengkung_bawah = 0.2
 
 [node name="PointLight2D11" type="PointLight2D" parent="." unique_id=231248376 groups=["LampuJalan"]]
 y_sort_enabled = true
@@ -4866,12 +4846,8 @@ position = Vector2(584.00006, 276)
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
-ukuran_tekstur = 128
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
-lebar_bawah = 0.461
-jarak_bawah_dari_tengah = 0.451
-lengkung_bawah = 0.2
 
 [node name="PointLight2D12" type="PointLight2D" parent="." unique_id=723142130 groups=["LampuJalan"]]
 y_sort_enabled = true
@@ -4880,12 +4856,8 @@ position = Vector2(807.99994, 275.99997)
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
-ukuran_tekstur = 128
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
-lebar_bawah = 0.461
-jarak_bawah_dari_tengah = 0.451
-lengkung_bawah = 0.2
 
 [node name="PointLight2D5" type="PointLight2D" parent="." unique_id=424739507 groups=["LampuJalan"]]
 y_sort_enabled = true
@@ -4894,12 +4866,8 @@ position = Vector2(360, 36)
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
-ukuran_tekstur = 128
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
-lebar_bawah = 0.461
-jarak_bawah_dari_tengah = 0.451
-lengkung_bawah = 0.2
 
 [node name="PointLight2D6" type="PointLight2D" parent="." unique_id=1045488713 groups=["LampuJalan"]]
 y_sort_enabled = true
@@ -4908,12 +4876,8 @@ position = Vector2(584, 35.999996)
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
-ukuran_tekstur = 128
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
-lebar_bawah = 0.461
-jarak_bawah_dari_tengah = 0.451
-lengkung_bawah = 0.2
 
 [node name="PointLight2D13" type="PointLight2D" parent="." unique_id=1800239614 groups=["LampuJalan"]]
 y_sort_enabled = true
@@ -4922,9 +4886,20 @@ position = Vector2(808, 36)
 scale = Vector2(1.5, 1.5)
 color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
-ukuran_tekstur = 128
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
-lebar_bawah = 0.461
-jarak_bawah_dari_tengah = 0.451
-lengkung_bawah = 0.2
+
+[node name="Arah 1" type="Marker2D" parent="." unique_id=509834163]
+position = Vector2(85, -105)
+
+[node name="Arah 2" type="Marker2D" parent="." unique_id=984000856]
+position = Vector2(86, 289)
+
+[node name="Arah 3" type="Marker2D" parent="." unique_id=127721149]
+position = Vector2(628, 287)
+
+[node name="Arah 4" type="Marker2D" parent="." unique_id=1453054019]
+position = Vector2(972, 293)
+
+[node name="Arah 5" type="Marker2D" parent="." unique_id=828732738]
+position = Vector2(632, -144)

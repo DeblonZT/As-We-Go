@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @export var kecepatan: float = 40.0
 @export var daftar_titik_tujuan: Array[Vector2] = []
-@export var waktu_tunggu_min: float = 1.0
-@export var waktu_tunggu_maks: float = 3.0
+@export var waktu_tunggu_min: float = 0.3
+@export var waktu_tunggu_maks: float = 1.0
 @export var akhiran_npc: String = ""
 
 @onready var animasi = $AnimasiKarakter
@@ -14,6 +14,14 @@ var indeks_tujuan: int = -1
 var titik_tujuan: Vector2 = Vector2.ZERO
 var posisi_sebelumnya: Vector2 = Vector2.ZERO
 var timer_stuck: float = 0.0
+
+# Variabel untuk sistem graph Marker2D
+var pakai_sistem_graph: bool = false
+var koneksi_graph: Dictionary = {}
+var dict_marker_node: Dictionary = {}
+var node_ujung: Array = []
+var nama_node_sekarang: String = ""
+var nama_node_sebelumnya: String = ""
 
 func _ready():
 	collision_layer = 0
@@ -28,11 +36,13 @@ func _ready():
 		akhiran_npc = daftar_akhiran[randi() % daftar_akhiran.size()]
 		
 	_mainkan_animasi("diam")
-		
-	if not daftar_titik_tujuan.is_empty():
-		pilih_tujuan_baru()
-	else:
-		status = "DIAM"
+	
+	# Jika tidak dipanggil via graph, gunakan list biasa
+	if not pakai_sistem_graph:
+		if not daftar_titik_tujuan.is_empty():
+			pilih_tujuan_baru()
+		else:
+			status = "DIAM"
 
 func _physics_process(delta: float):
 	if status == "JALAN":
@@ -57,14 +67,31 @@ func _physics_process(delta: float):
 			
 			if global_position.distance_to(posisi_sebelumnya) < 0.2:
 				timer_stuck += delta
-				if timer_stuck > 0.8:
-					_hentikan_di_tempat()
+				if timer_stuck > 1.5:
+					if pakai_sistem_graph:
+						queue_free()
+					else:
+						_hentikan_di_tempat()
 			else:
 				timer_stuck = 0.0
 				
 			posisi_sebelumnya = global_position
 		else:
-			_hentikan_di_tempat()
+			# Sampai di titik tujuan
+			if pakai_sistem_graph:
+				_tiba_di_node_graph()
+			else:
+				_hentikan_di_tempat()
+
+func _tiba_di_node_graph():
+	velocity = Vector2.ZERO
+	# Cek apakah node ini adalah ujung (endpoint) → hilang
+	if nama_node_sekarang in node_ujung:
+		queue_free()
+		return
+	
+	# Persimpangan → langsung pilih arah berikutnya tanpa jeda
+	pilih_tujuan_baru_graph()
 
 func _mainkan_animasi(nama_anim: String):
 	if not (animasi and animasi.sprite_frames):
@@ -97,5 +124,36 @@ func pilih_tujuan_baru():
 	timer_stuck = 0.0
 	status = "JALAN"
 
+func pilih_tujuan_baru_graph():
+	if koneksi_graph.is_empty() or not koneksi_graph.has(nama_node_sekarang):
+		queue_free()
+		return
+		
+	var tetangga = koneksi_graph[nama_node_sekarang].duplicate()
+	
+	# Jangan balik ke node sebelumnya (kecuali hanya ada satu pilihan)
+	if tetangga.size() > 1 and nama_node_sebelumnya in tetangga:
+		tetangga.erase(nama_node_sebelumnya)
+		
+	if tetangga.is_empty():
+		queue_free()
+		return
+		
+	var nama_tujuan = tetangga[randi() % tetangga.size()]
+	
+	nama_node_sebelumnya = nama_node_sekarang
+	nama_node_sekarang = nama_tujuan
+	
+	var marker_tujuan = dict_marker_node.get(nama_tujuan)
+	if marker_tujuan:
+		titik_tujuan = marker_tujuan.global_position
+		timer_stuck = 0.0
+		status = "JALAN"
+	else:
+		queue_free()
+
 func _on_timer_tunggu_timeout():
-	pilih_tujuan_baru()
+	if pakai_sistem_graph:
+		pilih_tujuan_baru_graph()
+	else:
+		pilih_tujuan_baru()

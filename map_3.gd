@@ -55,8 +55,8 @@ func _ready() -> void:
 					pos_tujuan = tujuan_portal_c3.global_position
 				arah_awal = "atas"
 
-			"warung_mw", "warung", "warungMW":
-				# Keluar dari Warung Mpok Wati di Map 3
+			"warungPI", "warung_pi", "warung_pak_iwan":
+				# Keluar dari Warung Pak Iwan di Map 3
 				if warung_house:
 					pos_awal = warung_house.global_position
 					pos_tujuan = pos_awal + Vector2(0, 25)

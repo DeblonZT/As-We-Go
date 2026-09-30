@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx27bue4dsexy"
-path="res://.godot/imported/Mang Cecep - Player.png-53e31ae07790e373138cbbe79737d664.ctex"
+uid="uid://5c0srbjikvcn"
+path="res://.godot/imported/Pak Iwan.png-381b087e155cb1922f28957e6493cb67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Karakter/Mang Cecep - Player.png"
-dest_files=["res://.godot/imported/Mang Cecep - Player.png-53e31ae07790e373138cbbe79737d664.ctex"]
+source_file="res://Assets/Character/Pak Iwan.png"
+dest_files=["res://.godot/imported/Pak Iwan.png-381b087e155cb1922f28957e6493cb67.ctex"]
 
 [params]
 

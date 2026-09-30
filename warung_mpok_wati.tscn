@@ -19,8 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://kbmyibs4j1ue" path="res://Assets/Arka - Player.png" id="17_sg5ty"]
 [ext_resource type="Script" uid="uid://uwkf1gsjjmg8" path="res://mpok_wati.gd" id="18_k70xp"]
 [ext_resource type="Texture2D" uid="uid://dyvln60kvkun5" path="res://Assets/bg_Character/ChatGPT Image Sep 20, 2026, 11_10_49 AM.png" id="20_051os"]
-[ext_resource type="Texture2D" uid="uid://nbec4j2g2hwq" path="res://Assets/Character/Mpok Wati.png" id="20_uy68p"]
-[ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="21_bga28"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="22_n2o5k"]
 [ext_resource type="PackedScene" uid="uid://c51gke2pxdqsq" path="res://toko_mpok_wati.tscn" id="23_m3axc"]
 [ext_resource type="Script" uid="uid://doa724igahq02" path="res://portal_kemap3WarungMW.gd" id="24_ugnhs"]
@@ -2175,103 +2173,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2r2oe"]
 radius = 6.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_85r1i"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(0, 50, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c7u37"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(48, 50, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7geh4"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(96, 50, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rxngf"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(144, 50, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2r2oe"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(192, 50, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bdm3q"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(240, 50, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ugnhs"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(0, 0, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_051os"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(48, 0, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lcsxp"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(96, 0, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xavnl"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(144, 0, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g7wpf"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(192, 0, 48, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e7mw3"]
-atlas = ExtResource("20_uy68p")
-region = Rect2(240, 0, 48, 50)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hlxhq"]
-animations = [{
-"frames": [{
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_85r1i")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_c7u37")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_7geh4")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_rxngf")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_2r2oe")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_bdm3q")
-}],
-"loop": 1,
-"name": &"diam_kanan",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_ugnhs")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_051os")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_lcsxp")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_xavnl")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_g7wpf")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_e7mw3")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 5.0
-}]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ftqqa"]
 radius = 6.6115704
 height = 14.87603
@@ -2331,13 +2232,6 @@ scale = Vector2(1.1, 1.1)
 script = ExtResource("18_k70xp")
 gambar_portrait_player = ExtResource("20_051os")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mpok_wati" unique_id=531313867]
-position = Vector2(0, -10.90909)
-scale = Vector2(1.2, 1.2)
-sprite_frames = SubResource("SpriteFrames_hlxhq")
-animation = &"diam_kanan"
-script = ExtResource("21_bga28")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mpok_wati" unique_id=126517413]
 position = Vector2(0.90908754, 4.545454)
 scale = Vector2(1.1, 1.1)
@@ -2364,9 +2258,6 @@ tile_set = SubResource("TileSet_3akot")
 [node name="Portal" type="Area2D" parent="." unique_id=2012432398]
 position = Vector2(256, 248)
 script = ExtResource("24_ugnhs")
-scene_tujuan = "res://map_2.tscn"
-id_pintu_keluar = "warung_mw"
-kembali_ke_scene_asal = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portal" unique_id=1190810513]
 position = Vector2(0, -6)

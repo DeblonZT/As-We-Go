@@ -90,6 +90,7 @@ func _on_new_game_button_pressed() -> void:
 func _mulai_game_baru_langsung() -> void:
 	print("Memulai Game Baru...")
 	Global.reset_data()
+	Cerita.reset_cerita()
 	Global.scene_aktif = GAME_SCENE_PATH
 	Global.simpan_game()
 	

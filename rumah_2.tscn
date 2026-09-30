@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://ctju3jgced2fw" path="res://Assets/Character/Bang Pandu.png" id="22_a1e4v"]
 [ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="23_eb54o"]
 [ext_resource type="Script" uid="uid://cf1548fd01rey" path="res://tempat_tidur.gd" id="24_jdu8w"]
-[ext_resource type="Script" path="res://rumah_2.gd" id="25_rumah2"]
+[ext_resource type="Script" uid="uid://1oo8w34jrity" path="res://rumah_2.gd" id="25_rumah2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e36hw"]
 texture = ExtResource("1_yseml")

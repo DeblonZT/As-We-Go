@@ -18,8 +18,8 @@ extends Node2D
 @onready var titik_portal_c2 = $TitikBerhenti_C2
 @onready var tujuan_portal_c2 = $TitikTujuan_CC2
 
-@onready var warung_house = $HouseInteract2
-@onready var warung_tujuan = $TitikTujuan_B
+@onready var warung_house = $HouseInteract2 if has_node("HouseInteract2") else ($warung_house if has_node("warung_house") else null)
+@onready var warung_tujuan = $warung_tujuan if has_node("warung_tujuan") else ($TitikTujuan_B if has_node("TitikTujuan_B") else null)
 
 func _ready() -> void:
 	print("=== MASUK MAP_2, target_spawn_id = '", TransitionScreen.target_spawn_id, "' ===")
@@ -78,7 +78,7 @@ func _ready() -> void:
 					pos_tujuan = tujuan_portal_c2.global_position
 				arah_awal = "atas"
 
-			"warung_mw", "warung", "warungMW":
+			"warung_mw", "warung", "warungMW", "pintu", "MW":
 				# Keluar dari Warung Mpok Wati
 				if warung_house:
 					pos_awal = warung_house.global_position

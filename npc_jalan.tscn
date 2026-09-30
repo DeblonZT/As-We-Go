@@ -840,21 +840,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_npc"]
-radius = 6.0
-
 [node name="NpcJalan" type="CharacterBody2D" unique_id=189284813]
+y_sort_enabled = true
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_npcjalan")
 
 [node name="AnimasiKarakter" type="AnimatedSprite2D" parent="." unique_id=474067077]
+y_sort_enabled = true
+position = Vector2(-7.500001, -6.5)
+scale = Vector2(0.6875, 0.7291666)
 sprite_frames = SubResource("SpriteFrames_npc")
-animation = &"diam"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=808508686]
-position = Vector2(0, 6)
-shape = SubResource("CircleShape2D_npc")
+animation = &"diam_5"
 
 [node name="TimerTunggu" type="Timer" parent="." unique_id=28557709]
 one_shot = true

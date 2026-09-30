@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 @export var scene_tujuan: String = "res://warung_mpok_wati.tscn"
-@export var id_pintu_masuk: String = "warung"
+@export var id_pintu_masuk: String = "warung_mw"
 @onready var icon_e = $AreaPintu/IconE
 @onready var sprite = $SpriteRumah
 @onready var area_pintu = $AreaPintu

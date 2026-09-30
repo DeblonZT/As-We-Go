@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bmue0xj6hf1x" path="res://main_ui.gd" id="1_2ppmm"]
 
 [node name="MainUI" type="CanvasLayer" unique_id=202137311]
-process_mode = 3
+process_mode = 1
 script = ExtResource("1_2ppmm")
 
 [node name="LabelUang" type="Label" parent="." unique_id=1479942216]

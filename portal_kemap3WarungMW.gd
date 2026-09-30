@@ -1,8 +1,8 @@
 extends Area2D
 
-@export var scene_tujuan: String = "res://map2.tscn"
-@export var id_pintu_keluar: String = "warungMW" # <-- Nama/ID spawn tujuan di scene tujuan
-@export var kembali_ke_scene_asal: bool = false # Jika true, balik otomatis ke scene sebelumnya
+@export var scene_tujuan: String = "res://map_2.tscn"
+@export var id_pintu_keluar: String = "warung_mw" # <-- Nama/ID spawn tujuan di scene tujuan
+@export var kembali_ke_scene_asal: bool = true # Jika true, balik otomatis ke scene sebelumnya
 
 @onready var icon_e: Sprite2D = $Sprite2D
 @onready var titik_berhenti: Marker2D = $TitikBerhenti  

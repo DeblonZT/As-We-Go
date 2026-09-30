@@ -6,13 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://cxhrd54ttpiv3" path="res://Assets/Interior/TopDownHouse_FurnitureState2.png" id="3_rgia2"]
 [ext_resource type="Texture2D" uid="uid://dc6j5h4kofboo" path="res://Assets/Interior/TopDownHouse_SmallItems.png" id="4_1crjv"]
 [ext_resource type="Texture2D" uid="uid://dvda7tkv1x0lm" path="res://Assets/Interior/furniture (107).png" id="5_rgia2"]
-[ext_resource type="Texture2D" uid="uid://bsngg83s03415" path="res://Assets/bg_Character/ChatGPT Image 11 Agu 2026, 14.06.06.png" id="7_pwsv2"]
 [ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="8_5xfys"]
-[ext_resource type="Script" uid="uid://dbber0tpmw2p7" path="res://mang_cecep.gd" id="8_pds6b"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="9_vcv70"]
 [ext_resource type="Script" uid="uid://c6on3277iy336" path="res://states/player.gd" id="10_pwsv2"]
 [ext_resource type="Texture2D" uid="uid://kbmyibs4j1ue" path="res://Assets/Arka - Player.png" id="11_kd4pg"]
 [ext_resource type="PackedScene" uid="uid://cwk1tyd74i4ts" path="res://toko_mang_cecep.tscn" id="12_vcv70"]
+[ext_resource type="Script" uid="uid://campwm3awnxte" path="res://warung_mang_cecep_scene.gd" id="13_wmc_root"]
+[ext_resource type="Script" uid="uid://b7bjnskbpu83f" path="res://portal_kemap5WarungMC.gd" id="14_wmc_portal"]
+[ext_resource type="Script" uid="uid://bpocdhb520pfn" path="res://mang_cecep_npc.gd" id="15_wmc_npc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_384nf"]
 texture = ExtResource("1_e6jfm")
@@ -913,8 +914,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_6323g"]
 radius = 6.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_portal"]
+size = Vector2(58, 32)
+
 [node name="WarungMangCecep" type="Node2D" unique_id=1912761512]
 y_sort_enabled = true
+script = ExtResource("13_wmc_root")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1887457056]
 offset_left = -94.0
@@ -940,8 +945,7 @@ tile_set = SubResource("TileSet_tamsi")
 [node name="mang_cecep" type="CharacterBody2D" parent="." unique_id=90123097]
 position = Vector2(262, 78)
 scale = Vector2(1.1, 1.1)
-script = ExtResource("8_pds6b")
-gambar_portrait_player = ExtResource("7_pwsv2")
+script = ExtResource("15_wmc_npc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mang_cecep" unique_id=1489846176]
 position = Vector2(0, -10.90909)
@@ -968,28 +972,41 @@ texture = ExtResource("9_vcv70")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=856740075 groups=["Player"]]
 y_sort_enabled = true
-position = Vector2(328, 232)
+position = Vector2(384, 305)
 script = ExtResource("10_pwsv2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1822593883]
-position = Vector2(56, 78)
 sprite_frames = SubResource("SpriteFrames_3bwh0")
 animation = &"diam"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1044271067]
-position = Vector2(56, 92)
+position = Vector2(0, 14)
 shape = SubResource("CircleShape2D_6323g")
 
 [node name="Area2D" type="Area2D" parent="Player" unique_id=1842533981]
-position = Vector2(56, 78)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D" unique_id=617175628]
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=2001142533]
-position = Vector2(56, 78)
 zoom = Vector2(2, 2)
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="Portal" type="Area2D" parent="." unique_id=2012432398]
+position = Vector2(384, 326)
+script = ExtResource("14_wmc_portal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal" unique_id=1190810513]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_portal")
+
+[node name="Sprite2D" type="Sprite2D" parent="Portal" unique_id=572629674]
+position = Vector2(0, 25.99997)
+scale = Vector2(0.43261716, 0.41210938)
+texture = ExtResource("9_vcv70")
+
+[node name="TitikBerhenti" type="Marker2D" parent="Portal" unique_id=2078318218]
+position = Vector2(0, -16)
 
 [node name="CanvasUI" type="CanvasLayer" parent="." unique_id=1565112547]
 
@@ -1000,8 +1017,5 @@ offset_left = 10.0
 offset_top = 16.0
 offset_right = 57.0
 offset_bottom = 39.0
-
-[connection signal="body_entered" from="mang_cecep/AreaBicara" to="mang_cecep" method="_on_area_bicara_body_entered"]
-[connection signal="body_exited" from="mang_cecep/AreaBicara" to="mang_cecep" method="_on_area_bicara_body_exited"]
 
 [editable path="CanvasUI/LayerTokoMangCecep"]

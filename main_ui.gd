@@ -1,9 +1,9 @@
 extends CanvasLayer
 
 # Variabel waktu mulai
-var jam = 17
-var menit = 50
-var sesi = "Sore"
+var jam = 6
+var menit = 0
+var sesi = "Pagi"
 var sesi_sebelumnya = "Pagi" # Untuk melacak kapan sesi berubah
 
 # Menghubungkan script dengan node Label & Timer
@@ -66,7 +66,10 @@ func _siapkan_node_audio():
 	else:
 		audio_bgm = $AudioBGM
 
-func _process(_delta):
+func _process(delta):
+	if audio_bgm:
+		var target_db: float = -60.0 if Musik.sedang_di_bangunan else 0.0
+		audio_bgm.volume_db = move_toward(audio_bgm.volume_db, target_db, 90.0 * delta)
 	# Memperbarui teks uang setiap saat agar selalu sinkron dengan Global
 	if label_uang:
 		label_uang.text = "Uang Arka: " + Global.format_rupiah(Global.uang)
@@ -74,6 +77,10 @@ func _process(_delta):
 	# Pastikan BGM tetap berputar bila berhenti tidak sengaja
 	if audio_bgm and not audio_bgm.playing and not get_tree().paused:
 		putar_bgm_sesi(sesi)
+		
+			# Jam menyala lagi otomatis setelah di-reset ke pagi
+	if timer_waktu.is_stopped() and jam < Cerita.JAM_BATAS_TIDUR:
+		timer_waktu.start()
 
 func cek_sesi():
 	sesi_sebelumnya = sesi
@@ -103,18 +110,19 @@ func update_ui():
 
 func _on_timer_waktu_timeout():
 	menit += 1
-	
 	if menit >= 60:
 		menit = 0
 		jam += 1
-		cek_sesi() 
-		
+		cek_sesi()
+
+	# Berhenti di batas tidur. Hari >= 1: Cerita yang memaksa tidur.
+	# Hari 0: jam menunggu sampai player tidur.
+	if jam >= Cerita.JAM_BATAS_TIDUR:
+		jam = Cerita.JAM_BATAS_TIDUR
+		menit = 0
+		timer_waktu.stop()
 	update_ui()
 	
-	if jam >= 18:
-		timer_waktu.stop()
-		print("Sesi jualan selesai!")
-
 # --- FUNGSI TRANSISI 2 DETIK DENGAN SFX & BGM ---
 func putar_transisi_waktu(fase_waktu: String):
 	_siapkan_node_audio()

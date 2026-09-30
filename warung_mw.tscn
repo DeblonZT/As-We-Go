@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bxodq1lqro8l6" path="res://Assets/object_2/pagar_lantai2.png" id="6_2r2oe"]
 [ext_resource type="Script" uid="uid://de2ktmt1voakm" path="res://mama.gd" id="7_bdm3q"]
 [ext_resource type="Texture2D" uid="uid://bthdqu1j5gpnl" path="res://Assets/bg_Character/bg_mamaArka.png" id="8_80iay"]
-[ext_resource type="Texture2D" uid="uid://bsngg83s03415" path="res://Assets/bg_Character/ChatGPT Image 11 Agu 2026, 14.06.06.png" id="9_rod18"]
+[ext_resource type="Texture2D" uid="uid://bsngg83s03415" path="res://Assets/bg_Character/hape.png" id="9_rod18"]
 [ext_resource type="Texture2D" uid="uid://bm0rr380dgly4" path="res://Assets/Character/Mama Arka.png" id="10_apl3d"]
 [ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="11_emnre"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="12_4smrj"]

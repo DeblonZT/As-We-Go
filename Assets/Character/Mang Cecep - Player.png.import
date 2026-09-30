@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bagyko4bcv6ga"
-path="res://.godot/imported/Rani.png-4b4ddef47eb28702eb93b8349f8aa35c.ctex"
+uid="uid://cx27bue4dsexy"
+path="res://.godot/imported/Mang Cecep - Player.png-a25bdab27951a9c080bb04b7dc654e08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Karakter/Rani.png"
-dest_files=["res://.godot/imported/Rani.png-4b4ddef47eb28702eb93b8349f8aa35c.ctex"]
+source_file="res://Assets/Character/Mang Cecep - Player.png"
+dest_files=["res://.godot/imported/Mang Cecep - Player.png-a25bdab27951a9c080bb04b7dc654e08.ctex"]
 
 [params]
 

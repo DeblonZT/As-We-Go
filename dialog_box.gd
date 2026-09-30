@@ -24,6 +24,14 @@ var gambar_npc: Texture2D
 var gambar_player: Texture2D
 var nama_npc: String = "NPC"
 var nama_player: String = "Kamu"
+const PATH_SFX_MASUK: String = "res://Assets/SFX/dialog_masuk.wav"
+const PATH_SFX_KELUAR: String = "res://Assets/SFX/dialog_keluar.wav"
+const PATH_SFX_NEXT: String = "res://Assets/SFX/dialog_next.wav"
+const VOLUME_SFX_DB: float = -6.0
+const BUS_SFX: String = "SFX"
+const JEDA_BARIS: float = 1.0  # sebelumnya 2.0
+
+var _nomor_baris: int = 0
 
 
 signal dialog_selesai
@@ -54,7 +62,8 @@ func mulai_dialog(tree: Dictionary, npc_texture: Texture2D = null, player_textur
 	visible = true
 	sembunyikan_hud()
 
-	siapkan_portrait_awal()   # <- BARU: set texture yang benar SEBELUM slide jalan
+	siapkan_portrait_awal()
+	_putar_sfx(PATH_SFX_MASUK)   # <- baru
 	await animasi_masuk()
 	tampilkan_baris()
 
@@ -80,6 +89,29 @@ func siapkan_portrait_awal():
 		else:
 			portrait.visible = false
 			
+func _putar_sfx(path: String, pitch_acak: bool = false) -> void:
+	if not ResourceLoader.exists(path):
+		push_warning("SFX dialog tidak ditemukan: '%s'" % path)
+		return
+	var pemutar := AudioStreamPlayer.new()
+	pemutar.stream = load(path)
+	pemutar.volume_db = VOLUME_SFX_DB
+	if pitch_acak:
+		pemutar.pitch_scale = randf_range(0.95, 1.08)  # biar tidak monoton
+	if AudioServer.get_bus_index(BUS_SFX) != -1:
+		pemutar.bus = BUS_SFX
+	add_child(pemutar)
+	pemutar.finished.connect(pemutar.queue_free)
+	pemutar.play()
+
+
+func _input(event: InputEvent) -> void:
+	if not sedang_dialog or menampilkan_pilihan:
+		return
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_SPACE:
+		get_viewport().set_input_as_handled()  # cegah tombol yang sedang fokus ikut tertekan
+		_on_click_next()
+		
 func animasi_masuk():
 	sedang_animasi = true
 	var tween = create_tween()
@@ -124,7 +156,11 @@ func tampilkan_baris():
 		tampilkan_pilihan(baris["choices"])
 	else:
 		bisa_lanjut = false
-		await get_tree().create_timer(2.0).timeout
+		_nomor_baris += 1
+		var nomor: int = _nomor_baris
+		await get_tree().create_timer(JEDA_BARIS).timeout
+		if nomor != _nomor_baris or not sedang_dialog:
+			return  # baris sudah berganti atau dialog sudah ditutup
 		bisa_lanjut = true
 
 func tampilkan_pilihan(daftar_pilihan: Array):
@@ -148,12 +184,15 @@ func _on_pilihan_dipilih(branch_tujuan: String):
 func _on_click_next():
 	if not sedang_dialog or sedang_animasi or menampilkan_pilihan or not bisa_lanjut:
 		return
+	_putar_sfx(PATH_SFX_NEXT, true)   # <- baru
 	index_dialog += 1
 	tampilkan_baris()
 
 func tutup_dialog():
 	sedang_animasi = true
+	_putar_sfx(PATH_SFX_KELUAR)   # <- baru
 	var tween = create_tween()
+	# ... sisanya tetap sama
 	tween.set_parallel(true)
 	tween.tween_property(kotak, "position", posisi_kotak_awal, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	tween.tween_property(portrait, "position", posisi_portrait_awal, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)

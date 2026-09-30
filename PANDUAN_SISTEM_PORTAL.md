@@ -127,32 +127,34 @@ Gunakan tabel ini sebagai acuan saat mengedit atau mengecek game kamu:
 | **map_2.tscn** | `Portal_B2` (kanan bawah) | `res://map_3.tscn` | `"portal_b3"` | Portal B3 (Kiri Bawah Map 3) |
 | **map_2.tscn** | `Portal_C` (kiri bawah) | `res://map_4.tscn` | `"map4"` / `"portal_c"` | Map 4 Jalur A (Kiri) |
 | **map_2.tscn** | `Portal_C2` (kanan bawah) | `res://map_4.tscn` | `"map44"` / `"portal_c2"` | Map 4 Jalur B (Kanan) |
-| **map_2.tscn** | `HouseInteract2` | `res://warung_mpok_wati.tscn`| `"pintu"` | Depan Pintu Warung MW |
+| **map_2.tscn** | `HouseInteract2` | `res://warung_mpok_wati.tscn`| `"warung_mw"` | Depan Warung Mpok Wati |
 | **map_3.tscn** | `Portal_A3` (kiri atas) | `res://map_2.tscn` | `"portal_b"` | Portal B (Kanan Atas Map 2) |
 | **map_3.tscn** | `Portal_B3` (kiri bawah)| `res://map_2.tscn` | `"portal_b2"` | Portal B2 (Kanan Bawah Map 2) |
 | **map_3.tscn** | `Portal_C3` (kanan bawah)| `res://map_5.tscn` | `"map5"` / `"portal_c3"` | Map 5 Jalur Atas (Titik B) |
-| **map_3.tscn** | `HouseInteract2` | `res://warung_mpok_wati.tscn`| `"pintu"` | Depan Pintu Warung MW |
+| **map_3.tscn** | `HouseInteract2` | `res://warung_pak_iwan.tscn`| `"warungPI"` | Depan Warung Pak Iwan |
 | **map_4.tscn** | `Portal_A` (atas kiri) | `res://map_2.tscn` | `"map4a_ke_map2"` | Map 2 Portal C (Kiri Bawah) |
 | **map_4.tscn** | `Portal_B` (atas kanan) | `res://map_2.tscn` | `"map4b_ke_map2"` | Map 2 Portal C2 (Kanan Bawah) |
 | **map_4.tscn** | `Portal_C` (kanan) | `res://map_5.tscn` | `"map4c_ke_map5"` | Map 5 Jalur Kiri (Titik A) |
 | **map_5.tscn** | `Portal_A` (kiri) | `res://map_4.tscn` | `"map5_ke_map4"` | Map 4 Jalur Kanan (Titik Dari Map 5) |
 | **map_5.tscn** | `Portal_B` (atas) | `res://map_3.tscn` | `"map5_ke_map3"` | Map 3 Jalur Kanan Bawah (Portal C3) |
-| **map_5.tscn** | `HouseInteract2` | `res://warung_mpok_wati.tscn`| `"pintu"` | Depan Pintu Warung MW |
-| **warung_mpok_wati.tscn** | `Portal` | Balik otomatis ke scene asal | `"warung_mw"` | Depan Warung Mpok Wati di Map asal |
+| **map_5.tscn** | `HouseInteract2` | `res://warung_mang_cecep.tscn`| `"warungMC"` | Depan Warung Mang Cecep |
+| **warung_mpok_wati.tscn** | `Portal` | `res://map_2.tscn` (otomatis asal) | `"warung_mw"` | Depan Warung Mpok Wati di Map 2 |
+| **warung_pak_iwan.tscn** | `Portal` | `res://map_3.tscn` (otomatis asal) | `"warungPI"` | Depan Warung Pak Iwan di Map 3 |
+| **warung_mang_cecep.tscn** | `Portal` | `res://map_5.tscn` (otomatis asal) | `"warungMC"` | Depan Warung Mang Cecep di Map 5 |
 
 ---
 
 ## 5. Fitur Khusus Interior (Kembali Otomatis ke Scene Asal)
 
-Untuk scene ruangan seperti **Warung Mpok Wati**, player bisa masuk dari `map_2`, `map_3`, ataupun `map_5`.
-Agar portal keluar warung tidak bingung harus kembali ke map mana:
-- Di `portal.gd` sudah ditambahkan opsi:
-  `@export var kembali_ke_scene_asal: bool = true`
+Untuk scene warung dan interior:
+- **Warung Mpok Wati** terhubung dengan **Map 2** (Spawn ID: `"warung_mw"`).
+- **Warung Pak Iwan** terhubung dengan **Map 3** (Spawn ID: `"warungPI"`).
+- **Warung Mang Cecep** terhubung dengan **Map 5** (Spawn ID: `"warungMC"`).
+
+Portal keluar di setiap warung memiliki opsi:
+`@export var kembali_ke_scene_asal: bool = true`
 - Ketika opsi ini bernilai `true`, portal keluar secara otomatis membaca `Global.scene_sebelumnya`.
-  - Jika masuk dari Map 2 -> keluar balik ke Map 2.
-  - Jika masuk dari Map 3 -> keluar balik ke Map 3.
-  - Jika masuk dari Map 5 -> keluar balik ke Map 5.
-  Player akan selalu muncul tepat di depan warung dengan spawn ID `"warung_mw"`.
+- Player akan selalu kembali ke map asal dan muncul tepat di depan pintu warung yang bersangkutan.
 
 ---
 

@@ -72,12 +72,14 @@ func buka_toko():
 		elif "bisa_gerak" in player_ref:
 			player_ref.bisa_gerak = false
 
-	print("1. Dialog Mpok Wati dimulai...")
-	DialogBox.mulai_dialog(dialog_singkat, gambar_portrait_npc, gambar_portrait_player, nama_npc, nama_player)
-	
-	# Menunggu sinyal dialog_selesai dari DialogBox
+	var tree_cerita: Dictionary = Cerita.dialog_tahap_untuk("mpok_wati")
+	if not tree_cerita.is_empty():
+		DialogBox.mulai_dialog(tree_cerita, gambar_portrait_npc, gambar_portrait_player, nama_npc, nama_player)
+	else:
+		DialogBox.mulai_dialog(dialog_singkat, gambar_portrait_npc, gambar_portrait_player, nama_npc, nama_player)
 	await DialogBox.dialog_selesai
-	print("2. Dialog sudah selesai ditekan!")
+	
+	print(">>> SAMPAI SETELAH AWAIT <<<")
 
 	# Mengecek apakah panel toko berhasil ditemukan
 	if panel_toko:

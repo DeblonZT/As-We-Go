@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgklinefn33si"
-path="res://.godot/imported/Desain tanpa judul (6).png-be49c1db175ba9a0f6ac7cde4859dfe4.ctex"
+uid="uid://bsngg83s03415"
+path="res://.godot/imported/hape.png-0083b61d0e7a1ddf7c9a5a99d1923b2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/bg_Character/Desain tanpa judul (6).png"
-dest_files=["res://.godot/imported/Desain tanpa judul (6).png-be49c1db175ba9a0f6ac7cde4859dfe4.ctex"]
+source_file="res://Assets/bg_Character/hape.png"
+dest_files=["res://.godot/imported/hape.png-0083b61d0e7a1ddf7c9a5a99d1923b2c.ctex"]
 
 [params]
 

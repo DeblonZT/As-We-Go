@@ -867,6 +867,8 @@ wait_time = 20.0
 one_shot = true
 
 [node name="AnimasiKarakter" type="AnimatedSprite2D" parent="." unique_id=686129825]
+position = Vector2(-6, -7)
+scale = Vector2(0.75, 0.7083333)
 sprite_frames = SubResource("SpriteFrames_us3ym")
 animation = &"diam"
 

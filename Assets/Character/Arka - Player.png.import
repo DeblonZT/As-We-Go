@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl50tq5bc2qlq"
-path="res://.godot/imported/character.png-ebf288d30a23ada1916cc70ac3c7b075.ctex"
+uid="uid://beyvxuiuw3be2"
+path="res://.godot/imported/Arka - Player.png-894de88bead360513ab5edcb17c28fa0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Karakter/character.png"
-dest_files=["res://.godot/imported/character.png-ebf288d30a23ada1916cc70ac3c7b075.ctex"]
+source_file="res://Assets/Character/Arka - Player.png"
+dest_files=["res://.godot/imported/Arka - Player.png-894de88bead360513ab5edcb17c28fa0.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cypv1t8lf0xrg"]
 
 [ext_resource type="Script" uid="uid://drxqxy60nnk6p" path="res://dialog_box.gd" id="1_cjsg4"]
-[ext_resource type="Texture2D" uid="uid://dgklinefn33si" path="res://Assets/bg_Character/Desain tanpa judul (6).png" id="2_1ki1k"]
+[ext_resource type="Texture2D" uid="uid://dgklinefn33si" path="res://Assets/bg_Character/Kotak_Dialog.png" id="2_1ki1k"]
 
 [node name="DialogBox" type="CanvasLayer" unique_id=282282325]
 script = ExtResource("1_cjsg4")

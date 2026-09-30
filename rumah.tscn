@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://t8wajbghayws" path="res://portal.gd" id="14_1x6fk"]
 [ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="14_n3e4i"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="15_n3e4i"]
+[ext_resource type="Texture2D" uid="uid://bthdqu1j5gpnl" path="res://Assets/bg_Character/bg_mamaArka.png" id="17_usq53"]
 [ext_resource type="Script" uid="uid://duhm2e75d7x4j" path="res://portal_kelantai2.gd" id="18_fsyxg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bpxei"]
@@ -1642,8 +1643,8 @@ size = Vector2(64.545425, 39.09091)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5miy"]
 size = Vector2(65, 40)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cajd"]
-size = Vector2(145, 28)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kw0sh"]
+size = Vector2(790.5, 95.25)
 
 [node name="Rumah" type="Node2D" unique_id=1146691669]
 y_sort_enabled = true
@@ -1708,6 +1709,7 @@ tile_set = SubResource("TileSet_hqnsr")
 position = Vector2(208.00003, 39.999996)
 scale = Vector2(1.1, 1.1)
 script = ExtResource("13_0r6kk")
+gambar_portrait_npc = ExtResource("17_usq53")
 gambar_portrait_player = ExtResource("2_usq53")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mama" unique_id=889876122]
@@ -1746,6 +1748,7 @@ scale = Vector2(0.43261716, 0.41210938)
 texture = ExtResource("15_n3e4i")
 
 [node name="TitikBerhenti" type="Marker2D" parent="Portal" unique_id=151669958]
+position = Vector2(1, -7)
 
 [node name="Portal2" type="Area2D" parent="." unique_id=1018336055]
 position = Vector2(320, 54)
@@ -1764,18 +1767,17 @@ texture = ExtResource("15_n3e4i")
 [node name="TitikBerhenti" type="Marker2D" parent="Portal2" unique_id=918143878]
 position = Vector2(25, -1)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=135591982]
-position = Vector2(320, 54)
+[node name="MapBorder" type="StaticBody2D" parent="." unique_id=405120227]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=96527608]
-position = Vector2(9, 216)
-shape = SubResource("RectangleShape2D_5cajd")
+[node name="bawah" type="CollisionShape2D" parent="MapBorder" unique_id=317487396]
+position = Vector2(335, 306)
+shape = SubResource("RectangleShape2D_kw0sh")
 
 [node name="TitikTujuan_A" type="Marker2D" parent="." unique_id=127024055]
 position = Vector2(343, 56)
 
 [node name="TitikTujuan_B" type="Marker2D" parent="." unique_id=1470896568]
-position = Vector2(327, 243)
+position = Vector2(328, 215)
 
 [node name="TitikBerhenti_A" type="Marker2D" parent="." unique_id=394239498]
 position = Vector2(343, 56)

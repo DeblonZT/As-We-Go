@@ -1,4 +1,4 @@
-﻿extends Node2D
+extends Node2D
 
 @onready var player = $Player
 
@@ -49,8 +49,8 @@ func _ready() -> void:
 					pos_tujuan = pos_awal + Vector2(0, 35)
 				arah_awal = "bawah"
 
-			"warung_mw", "warung", "warungMW":
-				# Keluar dari Warung Mpok Wati di Map 5
+			"warungMC", "warung_mc", "warung_mang_cecep", "warung_mw", "warung", "warungMW", "pintu":
+				# Keluar dari Warung Mang Cecep di Map 5
 				if warung_house:
 					pos_awal = warung_house.global_position
 					pos_tujuan = pos_awal + Vector2(0, 25)

@@ -6,13 +6,13 @@ extends PointLight2D
 # tepat di posisi node ini -> jadi titik runcingnya otomatis pas di bohlam lampu,
 # dan seluruh kipas menjulur ke bawah saja (tidak nyasar ke atas tiang).
 
-@export_range(32, 256, 8) var ukuran_tekstur: int = 160
-@export_range(0.0, 0.5) var lebar_celah_atas: float = 0.10   # jarak dua "tanduk" di atas
-@export_range(0.0, 0.9) var lebar_atas: float = 0.22          # lebar sisi atas kipas
-@export_range(0.0, 1.0) var lebar_bawah: float = 0.80         # lebar sisi bawah kipas
+@export_range(32, 256, 8) var ukuran_tekstur: int = 128
+@export_range(0.0, 0.5) var lebar_celah_atas: float = 0.037   # jarak dua "tanduk" di atas
+@export_range(0.0, 0.9) var lebar_atas: float = 0.116        # lebar sisi atas kipas
+@export_range(0.0, 1.0) var lebar_bawah: float = 0.461       # lebar sisi bawah kipas
 @export_range(0.0, 0.45) var jarak_atas_dari_tengah: float = 0.04   # jarak titik atas dari TENGAH tekstur
-@export_range(0.05, 0.5) var jarak_bawah_dari_tengah: float = 0.42  # jarak titik bawah dari TENGAH tekstur
-@export_range(-0.2, 0.2) var lengkung_bawah: float = 0.06     # + = tengah-bawah nungging turun
+@export_range(0.05, 0.5) var jarak_bawah_dari_tengah: float = 0.451  # jarak titik bawah dari TENGAH tekstur
+@export_range(-0.2, 0.2) var lengkung_bawah: float = 0.2    # + = tengah-bawah nungging turun
 @export var terangkan_ulang_saat_ready: bool = true
 
 const SUPER_SAMPLE: int = 3  # 3x3 = 9 sub-titik per piksel, buat menghaluskan tepi

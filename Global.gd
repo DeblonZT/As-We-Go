@@ -12,6 +12,9 @@ var es_teh_siap: int = 0
 var piscok_matang: int = 0
 var reputasi_pelanggan: int = 50
 
+func _ready() -> void:
+	print("TES OUTPUT: Global siap")
+
 func _process(_delta):
 	var scene_saat_ini = get_tree().current_scene
 	if is_instance_valid(scene_saat_ini) and scene_saat_ini is Node2D:
@@ -32,9 +35,9 @@ func _pasang_fitur_map(scene_node: Node):
 				if spawner_res:
 					var spawner_inst = spawner_res.instantiate()
 					if nama_file_scene == "map_3.tscn":
-						spawner_inst.jumlah_npc = 6
+						spawner_inst.jumlah_npc_maks = 6
 					else:
-						spawner_inst.jumlah_npc = 3
+						spawner_inst.jumlah_npc_maks = 3
 					scene_node.add_child(spawner_inst)
 		
 		if nama_file_scene == "map_3.tscn":
@@ -248,6 +251,8 @@ func simpan_game() -> bool:
 	config.set_value("lokasi", "spawn_id_aktif", spawn_id_aktif)
 	config.set_value("lokasi", "scene_sebelumnya", scene_sebelumnya)
 	config.set_value("lokasi", "spawn_id_sebelumnya", spawn_id_sebelumnya)
+	config.set_value("cerita", "flag", Cerita.flag)
+	config.set_value("cerita", "objektif", Cerita.objektif_aktif)
 	
 	var err = config.save(SAVE_PATH)
 	if err == OK:
@@ -307,7 +312,8 @@ func muat_game() -> bool:
 	spawn_id_aktif = config.get_value("lokasi", "spawn_id_aktif", "")
 	scene_sebelumnya = config.get_value("lokasi", "scene_sebelumnya", "")
 	spawn_id_sebelumnya = config.get_value("lokasi", "spawn_id_sebelumnya", "")
-	
+	Cerita.flag = config.get_value("cerita", "flag", {})
+	Cerita.set_objektif(config.get_value("cerita", "objektif", ""))
 	reputasi_berubah.emit(reputasi_pelanggan)
 	
 	var trans = Engine.get_main_loop().root.get_node_or_null("TransitionScreen") if Engine.get_main_loop() else null
