@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ckekkovyrw0bx"]
+
+[ext_resource type="Script" uid="uid://bt6nyqa7gllfy" path="res://panel_objektif.gd" id="1_xr8xp"]
+[ext_resource type="Texture2D" uid="uid://bf7o4clqc41b4" path="res://Assets/bg_Character/Kotak_Objektif.png" id="2_37bqr"]
+
+[node name="PanelObjektif" type="CanvasLayer" unique_id=1232421422]
+script = ExtResource("1_xr8xp")
+ukuran_font_judul = 8
+ukuran_font_teks = 10
+warna_judul = Color(0.37111905, 0.37111905, 0.37111905, 0.7254902)
+pinjam_gaya_dari_dialog_box = false
+tinggi_otomatis = false
+
+[node name="Panel" type="NinePatchRect" parent="." unique_id=70364600]
+offset_left = -3.0
+offset_top = 47.0
+offset_right = 138.0
+offset_bottom = 116.0
+texture = ExtResource("2_37bqr")
+
+[node name="Margin" type="MarginContainer" parent="Panel" unique_id=2035655284]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 136.0
+offset_bottom = 60.0
+
+[node name="Isi" type="VBoxContainer" parent="Panel/Margin" unique_id=2126462686]
+layout_mode = 2
+
+[node name="Judul" type="Label" parent="Panel/Margin/Isi" unique_id=103815416]
+layout_mode = 2
+text = "Objektif"
+
+[node name="Teks" type="Label" parent="Panel/Margin/Isi" unique_id=1891450233]
+layout_mode = 2

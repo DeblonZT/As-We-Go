@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cqrgat50nboo8"
+path="res://.godot/imported/sound effect sore.mp3-98c89be75baeaccef0ed1cc1cb7ba2e7.mp3str"
+
+[deps]
+
+source_file="res://Assets/Musics/Sound Effect/sound effect sore.mp3"
+dest_files=["res://.godot/imported/sound effect sore.mp3-98c89be75baeaccef0ed1cc1cb7ba2e7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

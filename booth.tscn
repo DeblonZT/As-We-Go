@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://qeoj88o7ycgg"]
+
+[ext_resource type="Script" uid="uid://cxx7j7tlqemra" path="res://booth.gd" id="1_booth"]
+[ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="2_icone"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_booth"]
+size = Vector2(48, 36)
+
+[node name="Booth" type="Area2D" unique_id=2094810496]
+position = Vector2(41, 0)
+script = ExtResource("1_booth")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1289567567]
+shape = SubResource("RectangleShape2D_booth")
+
+[node name="IconE" type="Sprite2D" parent="." unique_id=1585748290]
+position = Vector2(-1.0000019, -38)
+scale = Vector2(0.40625, 0.390625)
+texture = ExtResource("2_icone")
+
+[node name="TimerSpawn" type="Timer" parent="." unique_id=1114454674]
+wait_time = 5.0
+autostart = true

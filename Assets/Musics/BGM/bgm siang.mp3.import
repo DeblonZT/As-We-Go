@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ti71titsm4ej"
+path="res://.godot/imported/bgm siang.mp3-b3a7fd01362004e15a0b76b7943aa45f.mp3str"
+
+[deps]
+
+source_file="res://Assets/Musics/BGM/bgm siang.mp3"
+dest_files=["res://.godot/imported/bgm siang.mp3-b3a7fd01362004e15a0b76b7943aa45f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

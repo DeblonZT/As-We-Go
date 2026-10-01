@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dqre3xamryldv"
+path="res://.godot/imported/bgm warung pak iwan.mp3-c24d02bedf8413ebbd3273f5c35ec715.mp3str"
+
+[deps]
+
+source_file="res://Assets/Musics/BGM/bgm warung pak iwan.mp3"
+dest_files=["res://.godot/imported/bgm warung pak iwan.mp3-c24d02bedf8413ebbd3273f5c35ec715.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

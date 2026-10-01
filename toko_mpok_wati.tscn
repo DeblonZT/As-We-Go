@@ -1,0 +1,225 @@
+[gd_scene format=3 uid="uid://c51gke2pxdqsq"]
+
+[ext_resource type="Texture2D" uid="uid://05pu6rj3coli" path="res://Assets/Menu baru.png" id="1_kik3y"]
+[ext_resource type="Script" uid="uid://cm6v56erdv3uy" path="res://panel_toko.gd" id="1_l7kw8"]
+[ext_resource type="PackedScene" path="res://popup_notifikasi.tscn" id="3_popup"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygykl"]
+bg_color = Color(0.99215686, 0.9647059, 0.8901961, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.8509804, 0.48235294, 0.16078432, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tamsi"]
+bg_color = Color(0.8509804, 0.48235294, 0.16078432, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka6xa"]
+bg_color = Color(0.88151485, 0.22652455, 0.22652455, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tamsi"]
+atlas = ExtResource("1_kik3y")
+region = Rect2(0, 44.79364, 53.718643, 53.802185)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygykl"]
+atlas = ExtResource("1_kik3y")
+region = Rect2(47.53589, 44.257423, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka6xa"]
+atlas = ExtResource("1_kik3y")
+region = Rect2(141.33456, 43.34859, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0cps"]
+atlas = ExtResource("1_kik3y")
+region = Rect2(190.15096, 44.44141, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylodd"]
+atlas = ExtResource("1_kik3y")
+region = Rect2(92.88985, 44.80569, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pa4r"]
+atlas = ExtResource("1_kik3y")
+region = Rect2(238.06064, 44.606064, 53, 53)
+
+[node name="LayerToko" type="CanvasLayer" unique_id=345506797]
+
+[node name="PanelToko" type="Panel" parent="." unique_id=460948846]
+offset_left = 204.0
+offset_top = 55.0
+offset_right = 493.0
+offset_bottom = 310.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ygykl")
+script = ExtResource("1_l7kw8")
+
+[node name="HeaderOranye" type="Panel" parent="PanelToko" unique_id=541827117]
+layout_mode = 0
+offset_top = -21.0
+offset_right = 289.0
+offset_bottom = 13.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tamsi")
+
+[node name="Label" type="Label" parent="PanelToko" unique_id=2084624298]
+layout_mode = 0
+offset_left = 113.0
+offset_top = -15.0
+offset_right = 147.0
+offset_bottom = 8.0
+text = "BELI"
+
+[node name="BtnClose" type="Button" parent="PanelToko" unique_id=601911049]
+layout_mode = 0
+offset_left = 249.0
+offset_top = -19.0
+offset_right = 279.90912
+offset_bottom = 8.0
+scale = Vector2(1.1, 1.1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ka6xa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ka6xa")
+text = "X"
+
+[node name="LabelUang" type="Label" parent="PanelToko" unique_id=1153078478]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 18.0
+offset_right = 127.0
+offset_bottom = 41.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelToko" unique_id=1891797377]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 38.0
+offset_right = 278.0
+offset_bottom = 244.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelToko/ScrollContainer" unique_id=699318836]
+custom_minimum_size = Vector2(255, 0)
+layout_mode = 2
+
+[node name="ItemPisang" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=2002029396]
+custom_minimum_size = Vector2(245, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang" unique_id=1849735342]
+layout_mode = 2
+texture = SubResource("AtlasTexture_tamsi")
+
+[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang" unique_id=1243725455]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Pisang - Rp8.000"
+
+[node name="btn_beli_pisang" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang" unique_id=83135614]
+layout_mode = 2
+text = "Beli"
+
+[node name="ItemCoklat" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=760470411]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat" unique_id=1924009892]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ygykl")
+
+[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat" unique_id=16126066]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Coklat - Rp10.000"
+
+[node name="btn_beli_coklat" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat" unique_id=3164524]
+layout_mode = 2
+text = "Beli"
+
+[node name="ItemTerigu" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=1233207872]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTerigu" unique_id=252121720]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ka6xa")
+
+[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTerigu" unique_id=962880288]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Terigu - Rp5.000"
+
+[node name="btn_beli_terigu" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTerigu" unique_id=1241741240]
+layout_mode = 2
+text = "Beli"
+
+[node name="ItemTeh" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=110189110]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTeh" unique_id=848064020]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a0cps")
+
+[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTeh" unique_id=529653539]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Teh - Rp3.000"
+
+[node name="btn_beli_teh" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTeh" unique_id=1460569140]
+layout_mode = 2
+text = "Beli"
+
+[node name="ItemLumpia" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=1663525814]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia" unique_id=1518895712]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ylodd")
+
+[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia" unique_id=533301961]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Lumpia - Rp4.000"
+
+[node name="btn_beli_kulit" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia" unique_id=1170276743]
+layout_mode = 2
+text = "Beli"
+
+[node name="ItemEs" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=870405819]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemEs" unique_id=1286220385]
+layout_mode = 2
+texture = SubResource("AtlasTexture_4pa4r")
+
+[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemEs" unique_id=960619861]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Es - Rp2.000"
+
+[node name="btn_beli_es" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemEs" unique_id=969802194]
+layout_mode = 2
+text = "Beli"
+
+[node name="PopupNotifikasi" parent="." instance=ExtResource("3_popup")]
+
+[connection signal="pressed" from="PanelToko/BtnClose" to="PanelToko" method="_on_btn_close_pressed"]
+[connection signal="pressed" from="PanelToko/ScrollContainer/VBoxContainer/ItemPisang/btn_beli_pisang" to="PanelToko" method="_on_btn_beli_pisang_pressed"]
+[connection signal="pressed" from="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat/btn_beli_coklat" to="PanelToko" method="_on_btn_beli_coklat_pressed"]
+[connection signal="pressed" from="PanelToko/ScrollContainer/VBoxContainer/ItemTerigu/btn_beli_terigu" to="PanelToko" method="_on_btn_beli_terigu_pressed"]
+[connection signal="pressed" from="PanelToko/ScrollContainer/VBoxContainer/ItemTeh/btn_beli_teh" to="PanelToko" method="_on_btn_beli_teh_pressed"]
+[connection signal="pressed" from="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia/btn_beli_kulit" to="PanelToko" method="_on_btn_beli_kulit_pressed"]
+[connection signal="pressed" from="PanelToko/ScrollContainer/VBoxContainer/ItemEs/btn_beli_es" to="PanelToko" method="_on_btn_beli_es_pressed"]
