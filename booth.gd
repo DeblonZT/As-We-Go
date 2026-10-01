@@ -128,23 +128,17 @@ func _process(delta: float):
 
 	var tahap: String = Cerita.tahap_booth()
 
-	if tahap == "siap":
-		if icon_e:
-			icon_e.show()
-		if baru_ditekan:
-			buka_minigame()
-		return
-
 	if icon_e:
 		icon_e.show()
 
-	# Ikon E hanya tampil kalau belum siap dipakai (biar tidak dobel sama ikon minigame lain)
-	if icon_e:
-		icon_e.visible = tahap != "siap"
-
 	if tahap == "siap":
-		return  # booth normal, tidak ada logika perbaikan lagi
-
+		if baru_ditekan:
+			if Global.hari == 3 and Cerita.punya_flag("rani_bergabung") and not Cerita.punya_flag("rani_di_spot"):
+				_arahkan_rani_ke_spot()
+			else:
+				buka_minigame()
+		return
+		
 	if sedang_memperbaiki:
 		if sekarang:
 			progres_perbaikan += delta
@@ -187,6 +181,42 @@ func buka_minigame():
 				var tw = create_tween()
 				tw.tween_property(cam, "offset", Vector2(150, 0), 0.8)
 		minigame_instance.buka_panel()
+
+
+func _arahkan_rani_ke_spot() -> void:
+	sibuk = true
+	var p = player_ref if (player_ref and is_instance_valid(player_ref)) else get_tree().get_first_node_in_group("Player")
+	if is_instance_valid(p) and p.has_method("set_bisa_gerak"):
+		p.set_bisa_gerak(false)
+	
+	var rani = get_tree().get_first_node_in_group("Rani")
+	if not rani:
+		var map = get_tree().current_scene
+		if map:
+			rani = map.get_node_or_null("rani")
+			if not rani:
+				rani = map.get_node_or_null("Rani")
+	
+	var map = get_tree().current_scene
+	var marker_spot = map.get_node_or_null("Spot Rani") if map else null
+	var pos_spot = marker_spot.global_position if marker_spot else Vector2(520, 167)
+	
+	if rani and is_instance_valid(rani):
+		if rani.has_method("jalan_ke_spot"):
+			await rani.jalan_ke_spot(pos_spot)
+		else:
+			rani.global_position = pos_spot
+	
+	Cerita.set_flag("rani_di_spot")
+	
+	if is_instance_valid(p):
+		if p.has_method("aktifkan_kontrol"):
+			p.aktifkan_kontrol()
+		elif p.has_method("set_bisa_gerak"):
+			p.set_bisa_gerak(true)
+		TeksMelayang.munculkan_di_sekitar(p, "Rani siap membantu! Tekan E untuk mulai berjualan", Color(0.6, 1.0, 0.6))
+	
+	sibuk = false
 
 
 # ---------------- ALUR CERITA / PERBAIKAN ----------------
@@ -253,6 +283,9 @@ func _selesai_perbaikan() -> void:
 	toko_buka = true
 	
 	var map = get_tree().current_scene
+	if map == null:
+		sibuk = false
+		return
 	var marker_pindah_1 = map.get_node_or_null("Arka Pindah")
 	var marker_pindah_2 = map.get_node_or_null("Arka Pindah 2")
 	if not marker_pindah_2:

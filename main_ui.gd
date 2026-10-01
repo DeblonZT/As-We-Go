@@ -17,6 +17,7 @@ var sesi_sebelumnya = "Pagi" # Untuk melacak kapan sesi berubah
 
 var audio_sfx: AudioStreamPlayer
 var audio_bgm: AudioStreamPlayer
+var _nomor_sfx: int = 0
 
 # --- MEMUAT GAMBAR TRANSISI ---
 var img_pagi = preload("res://Assets/BG/bg_pagi.png")
@@ -175,8 +176,10 @@ func putar_transisi_waktu(fase_waktu: String):
 	putar_bgm_sesi(fase_waktu)
 
 func _jadwalkan_stop_sfx(waktu: float):
+	_nomor_sfx += 1
+	var nomor: int = _nomor_sfx
 	await get_tree().create_timer(waktu).timeout
-	if audio_sfx and audio_sfx.playing:
+	if nomor == _nomor_sfx and audio_sfx and audio_sfx.playing:
 		audio_sfx.stop()
 
 # --- FUNGSI PEMUTAR BGM SESI ---

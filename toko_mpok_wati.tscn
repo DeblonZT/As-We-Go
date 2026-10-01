@@ -60,33 +60,34 @@ region = Rect2(238.06064, 44.606064, 53, 53)
 [node name="LayerToko" type="CanvasLayer" unique_id=345506797]
 
 [node name="PanelToko" type="Panel" parent="." unique_id=460948846]
-offset_left = 204.0
-offset_top = 55.0
-offset_right = 493.0
-offset_bottom = 310.0
+offset_left = 150.0
+offset_top = 45.0
+offset_right = 530.0
+offset_bottom = 315.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ygykl")
 script = ExtResource("1_l7kw8")
 
 [node name="HeaderOranye" type="Panel" parent="PanelToko" unique_id=541827117]
 layout_mode = 0
 offset_top = -21.0
-offset_right = 289.0
+offset_right = 380.0
 offset_bottom = 13.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tamsi")
 
 [node name="Label" type="Label" parent="PanelToko" unique_id=2084624298]
 layout_mode = 0
-offset_left = 113.0
+offset_left = 120.0
 offset_top = -15.0
-offset_right = 147.0
+offset_right = 260.0
 offset_bottom = 8.0
-text = "BELI"
+text = "WARUNG MPOK WATI"
+horizontal_alignment = 1
 
 [node name="BtnClose" type="Button" parent="PanelToko" unique_id=601911049]
 layout_mode = 0
-offset_left = 249.0
+offset_left = 340.0
 offset_top = -19.0
-offset_right = 279.90912
+offset_right = 370.0
 offset_bottom = 8.0
 scale = Vector2(1.1, 1.1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ka6xa")
@@ -95,58 +96,25 @@ text = "X"
 
 [node name="LabelUang" type="Label" parent="PanelToko" unique_id=1153078478]
 layout_mode = 0
-offset_left = 87.0
+offset_left = 130.0
 offset_top = 18.0
-offset_right = 127.0
+offset_right = 250.0
 offset_bottom = 41.0
+horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelToko" unique_id=1891797377]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 38.0
-offset_right = 278.0
-offset_bottom = 244.0
+offset_top = 40.0
+offset_right = 370.0
+offset_bottom = 260.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelToko/ScrollContainer" unique_id=699318836]
-custom_minimum_size = Vector2(255, 0)
+custom_minimum_size = Vector2(345, 0)
 layout_mode = 2
-
-[node name="ItemPisang" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=2002029396]
-custom_minimum_size = Vector2(245, 0)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang" unique_id=1849735342]
-layout_mode = 2
-texture = SubResource("AtlasTexture_tamsi")
-
-[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang" unique_id=1243725455]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Pisang - Rp8.000"
-
-[node name="btn_beli_pisang" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang" unique_id=83135614]
-layout_mode = 2
-text = "Beli"
-
-[node name="ItemCoklat" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=760470411]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat" unique_id=1924009892]
-layout_mode = 2
-texture = SubResource("AtlasTexture_ygykl")
-
-[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat" unique_id=16126066]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Coklat - Rp10.000"
-
-[node name="btn_beli_coklat" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat" unique_id=3164524]
-layout_mode = 2
-text = "Beli"
 
 [node name="ItemTerigu" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=1233207872]
+custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTerigu" unique_id=252121720]
@@ -159,11 +127,29 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Terigu - Rp5.000"
 
+[node name="BtnMin" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTerigu"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "-"
+
+[node name="LabelJumlah" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTerigu"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+
+[node name="BtnPlus" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTerigu"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "+"
+
 [node name="btn_beli_terigu" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTerigu" unique_id=1241741240]
 layout_mode = 2
 text = "Beli"
 
 [node name="ItemTeh" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=110189110]
+custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTeh" unique_id=848064020]
@@ -176,28 +162,29 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Teh - Rp3.000"
 
+[node name="BtnMin" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTeh"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "-"
+
+[node name="LabelJumlah" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTeh"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+
+[node name="BtnPlus" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTeh"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "+"
+
 [node name="btn_beli_teh" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemTeh" unique_id=1460569140]
 layout_mode = 2
 text = "Beli"
 
-[node name="ItemLumpia" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=1663525814]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia" unique_id=1518895712]
-layout_mode = 2
-texture = SubResource("AtlasTexture_ylodd")
-
-[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia" unique_id=533301961]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Lumpia - Rp4.000"
-
-[node name="btn_beli_kulit" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia" unique_id=1170276743]
-layout_mode = 2
-text = "Beli"
-
 [node name="ItemEs" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=870405819]
+custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemEs" unique_id=1286220385]
@@ -210,7 +197,129 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Es - Rp2.000"
 
+[node name="BtnMin" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemEs"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "-"
+
+[node name="LabelJumlah" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemEs"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+
+[node name="BtnPlus" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemEs"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "+"
+
 [node name="btn_beli_es" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemEs" unique_id=969802194]
+layout_mode = 2
+text = "Beli"
+
+[node name="ItemPisang" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=2002029396]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang" unique_id=1849735342]
+layout_mode = 2
+texture = SubResource("AtlasTexture_tamsi")
+
+[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang" unique_id=1243725455]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Pisang - Rp8.000"
+
+[node name="BtnMin" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "-"
+
+[node name="LabelJumlah" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+
+[node name="BtnPlus" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "+"
+
+[node name="btn_beli_pisang" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemPisang" unique_id=83135614]
+layout_mode = 2
+text = "Beli"
+
+[node name="ItemCoklat" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=760470411]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat" unique_id=1924009892]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ygykl")
+
+[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat" unique_id=16126066]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Coklat - Rp10.000"
+
+[node name="BtnMin" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "-"
+
+[node name="LabelJumlah" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+
+[node name="BtnPlus" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "+"
+
+[node name="btn_beli_coklat" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemCoklat" unique_id=3164524]
+layout_mode = 2
+text = "Beli"
+
+[node name="ItemLumpia" type="HBoxContainer" parent="PanelToko/ScrollContainer/VBoxContainer" unique_id=1663525814]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia" unique_id=1518895712]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ylodd")
+
+[node name="Label" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia" unique_id=533301961]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Lumpia - Rp4.000"
+
+[node name="BtnMin" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "-"
+
+[node name="LabelJumlah" type="Label" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+
+[node name="BtnPlus" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "+"
+
+[node name="btn_beli_kulit" type="Button" parent="PanelToko/ScrollContainer/VBoxContainer/ItemLumpia" unique_id=1170276743]
 layout_mode = 2
 text = "Beli"
 

@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://t8wajbghayws" path="res://portal.gd" id="14_1x6fk"]
 [ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="14_n3e4i"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="15_n3e4i"]
-[ext_resource type="Texture2D" uid="uid://bthdqu1j5gpnl" path="res://Assets/bg_Character/bg_mamaArka.png" id="17_usq53"]
+[ext_resource type="Texture2D" uid="uid://djsdgd0m7u1tt" path="res://Assets/bg_Character/Mama.png" id="17_usq53"]
 [ext_resource type="Script" uid="uid://duhm2e75d7x4j" path="res://portal_kelantai2.gd" id="18_fsyxg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bpxei"]

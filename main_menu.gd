@@ -16,6 +16,7 @@ var master_bus_index: int
 var music_bus_index: int
 var popup: Control = null
 
+
 func _ready() -> void:
 	if MainUI:
 		MainUI.hide()

@@ -97,16 +97,30 @@ func perbarui_tampilan():
 		
 	durasi_masak = Global.waktu_masak
 	
+	var resep_esteh = Cerita.punya_flag("resep_es_teh_terbuka")
+	var resep_piscok = Cerita.punya_flag("resep_piscok_terbuka")
+	
 	var ada_bahan_cilok = (Global.terigu > 0 or Global.bahan_cilok > 0)
-	var ada_bahan_esteh = (Global.teh_bubuk > 0 and Global.es_batu > 0)
-	var ada_bahan_piscok = (Global.pisang > 0 and Global.coklat > 0 and Global.kulit_lumpia > 0)
+	var ada_bahan_esteh = resep_esteh and (Global.teh_bubuk > 0 and Global.es_batu > 0)
+	var ada_bahan_piscok = resep_piscok and (Global.pisang > 0 and Global.coklat > 0 and Global.kulit_lumpia > 0)
 	
 	if tombol_masak_cilok:
 		tombol_masak_cilok.disabled = sedang_masak or not ada_bahan_cilok
+		tombol_masak_cilok.text = "Masak Cilok"
 	if tombol_buat_es_teh:
-		tombol_buat_es_teh.disabled = sedang_masak or not ada_bahan_esteh
+		if resep_esteh:
+			tombol_buat_es_teh.disabled = sedang_masak or not ada_bahan_esteh
+			tombol_buat_es_teh.text = "Buat Es Teh"
+		else:
+			tombol_buat_es_teh.disabled = true
+			tombol_buat_es_teh.text = "??? (Locked)"
 	if tombol_masak_piscok:
-		tombol_masak_piscok.disabled = sedang_masak or not ada_bahan_piscok
+		if resep_piscok:
+			tombol_masak_piscok.disabled = sedang_masak or not ada_bahan_piscok
+			tombol_masak_piscok.text = "Masak Piscok"
+		else:
+			tombol_masak_piscok.disabled = true
+			tombol_masak_piscok.text = "??? (Locked)"
 
 func _on_tombol_masak_cilok_pressed():
 	if sedang_masak: return

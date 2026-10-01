@@ -87,7 +87,7 @@ func kembalikan_idle():
 func mulai_bicara():
 	var hari = Global.hari
 	var kunci = "%s_hari_%d" % [id_npc, hari]
-	var tree = DataDialog.ambil_dialog(id_npc, hari, Cerita.punya_flag(kunci))
+	var tree = Cerita.pilih_dialog(id_npc, hari, Cerita.punya_flag(kunci))
 
 	if tree.is_empty():
 		push_warning("Dialog kosong untuk NPC '%s' di hari %d, cek DataDialog" % [id_npc, hari])

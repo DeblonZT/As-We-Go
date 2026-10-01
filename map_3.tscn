@@ -5992,6 +5992,9 @@ position = Vector2(419, 152)
 [node name="Arka Pindah 2" type="Marker2D" parent="." unique_id=567342162]
 position = Vector2(497, 167)
 
+[node name="Spot Rani" type="Marker2D" parent="." unique_id=40467783]
+position = Vector2(520, 167)
+
 [node name="Pelanggan Antre" type="Marker2D" parent="." unique_id=757244361]
 position = Vector2(538, 133)
 

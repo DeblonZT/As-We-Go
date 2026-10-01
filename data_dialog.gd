@@ -41,7 +41,7 @@ const DIALOG_NPC = {
 		}
 	},
 
-		"pandu": {
+	"pandu": {
 		0: {
 			"start": [
 				{"speaker": "player", "text": "Bang Pandu, aku boleh minta tolong ngga?"},
@@ -87,7 +87,13 @@ const DIALOG_NPC = {
 		},
 		2: {
 			"start": [
-				{"speaker": "npc", "text": "Gimana jualan kemarin? Sekarang coba beli bahan ke Mpok Wati."}
+				{"speaker": "player", "text": "Bang Pandu, aku mau cerita..."},
+				{"speaker": "player", "text": "Pelangganku makin banyak, tapi waktu pembuatan makanannya sangat lambat."},
+				{"speaker": "npc", "text": "Oh soal itu! Mang Cecep di Jalan 5 punya alat yang dapat mengupgrade mekanik memasak seperti kompor dan meja."},
+				{"speaker": "npc", "text": "Kamu bisa temui Mang Cecep kalau mau upgrade kompor dan mejanya biar masaknya lebih cepat."},
+				{"speaker": "npc", "text": "Terus satu lagi, menu makanan itu harus ditambahkan, jangan hanya berjualan cilok saja!"},
+				{"speaker": "npc", "text": "Coba kamu tanya mamah sama mpok wati yang sudah pandai jualan.", "aksi": "saran_pandu_hari2"},
+				{"speaker": "player", "text": "Oke Bang, makasih sarannya! Aku bakal tanya Mama dan Mpok Wati."}
 			]
 		},
 		"default": {
@@ -97,7 +103,7 @@ const DIALOG_NPC = {
 		}
 	},
 	
-		"pak_iwan": {
+	"pak_iwan": {
 		"default": {"start": [
 			{"speaker": "npc", "text": "Booth-nya jaga baik-baik ya, Nak."}
 		]}
@@ -109,7 +115,12 @@ const DIALOG_NPC = {
 	},
 	"mang_cecep": {
 		"default": {"start": [
-			{"speaker": "npc", "text": "Kalau ada yang rusak, bilang aja ke Mamang."}
+			{"speaker": "npc", "text": "Kalau ada yang rusak atau mau upgrade kompor dan meja, bilang aja ke Mamang."}
+		]}
+	},
+	"rani": {
+		"default": {"start": [
+			{"speaker": "npc", "text": "Aku tunggu di sini ya, Ka."}
 		]}
 	},
 
@@ -140,7 +151,33 @@ const DIALOG_TAHAP = {
 			{"speaker": "player", "text": "Makasih, Pak!"}
 		]}
 	},
+	"mama": {
+		"tanya_mama_mpok_wati": {"start": [
+			{"speaker": "player", "text": "Mah, kata Bang Pandu aku harus nambah menu jualan. Mama ada saran?"},
+			{"speaker": "npc", "text": "Wah bagus itu! Mau coba jualan Es Teh segar?"},
+			{"speaker": "npc", "text": "Bahannya gampang kok, Teh Bubuk dan Es Batu. Pembeli pasti suka pas cuaca panas!", "aksi": "buka_resep_es_teh"},
+			{"speaker": "player", "text": "Makasih sarannya Mah!"}
+		]},
+		"temui_mama": {"start": [
+			{"speaker": "player", "text": "Mah, kata Bang Pandu aku harus nambah menu jualan. Mama ada saran?"},
+			{"speaker": "npc", "text": "Wah bagus itu! Mau coba jualan Es Teh segar?"},
+			{"speaker": "npc", "text": "Bahannya gampang kok, Teh Bubuk dan Es Batu. Pembeli pasti suka pas cuaca panas!", "aksi": "buka_resep_es_teh"},
+			{"speaker": "player", "text": "Makasih sarannya Mah!"}
+		]}
+	},
 	"mpok_wati": {
+		"tanya_mama_mpok_wati": {"start": [
+			{"speaker": "player", "text": "Mpok Wati, aku mau tanya dong. Menu apa ya yang laris selain Cilok?"},
+			{"speaker": "npc", "text": "Oalah Arka! Kalau jajanan paling laris di warung Mpok sih Piscok (Pisang Coklat)!"},
+			{"speaker": "npc", "text": "Bahannya Pisang, Selai Coklat, dan Kulit Lumpia. Nanti bahannya langsung beli di warung Mpok aja ya!", "aksi": "buka_resep_piscok"},
+			{"speaker": "player", "text": "Makasih sarannya Mpok Wati!"}
+		]},
+		"temui_mpok_wati": {"start": [
+			{"speaker": "player", "text": "Mpok Wati, aku mau tanya dong. Menu apa ya yang laris selain Cilok?"},
+			{"speaker": "npc", "text": "Oalah Arka! Kalau jajanan paling laris di warung Mpok sih Piscok (Pisang Coklat)!"},
+			{"speaker": "npc", "text": "Bahannya Pisang, Selai Coklat, dan Kulit Lumpia. Nanti bahannya langsung beli di warung Mpok aja ya!", "aksi": "buka_resep_piscok"},
+			{"speaker": "player", "text": "Makasih sarannya Mpok Wati!"}
+		]},
 		"beli_bahan": {"start": [
 			{"speaker": "player", "text": "Permisi, Mpok. Aku mau beli bahan buat jualan."},
 			{"speaker": "npc", "text": "Oh, Arka! Jadi beneran mau jualan? Hebat kamu, masih kecil sudah berani usaha."},
@@ -156,7 +193,34 @@ const DIALOG_TAHAP = {
 			{"speaker": "npc", "text": "Kencangkan baut-bautnya, harusnya bisa dipakai lagi.", "aksi": "beri_obeng"},
 			{"speaker": "player", "text": "Makasih banyak, Mang!"}
 		]}
-	}
+	},
+	"pandu": {
+		"temui_pandu": {"start": [
+			{"speaker": "player", "text": "Bang Pandu, aku mau cerita..."},
+			{"speaker": "player", "text": "Pelangganku makin banyak, tapi waktu pembuatan makanannya sangat lambat."},
+			{"speaker": "npc", "text": "Oh soal itu! Mang Cecep di Jalan 5 punya alat yang dapat mengupgrade mekanik memasak seperti kompor dan meja."},
+			{"speaker": "npc", "text": "Kamu bisa temui Mang Cecep kalau mau upgrade kompor dan mejanya biar masaknya lebih cepat."},
+			{"speaker": "npc", "text": "Terus satu lagi, menu makanan itu harus ditambahkan, jangan hanya berjualan cilok saja!"},
+			{"speaker": "npc", "text": "Coba kamu tanya mamah sama mpok wati yang sudah pandai jualan.", "aksi": "saran_pandu_hari2"},
+			{"speaker": "player", "text": "Oke Bang, makasih sarannya! Aku bakal tanya Mama dan Mpok Wati."}
+		]},
+		"curhat_pandu": {"start": [
+			{"speaker": "player", "text": "Bang, aku mau cerita sebentar..."},
+			{"speaker": "npc", "text": "Kenapa, Ka? Mukamu kusut banget."},
+			{"speaker": "player", "text": "Jualan sendirian capek banget, Bang. Belanja, masak, layanin pelanggan, semuanya aku sendiri."},
+			{"speaker": "npc", "text": "Hahaha, wajar. Makanya pengusaha butuh tim."},
+			{"speaker": "npc", "text": "Coba ajak temanmu buat bantuin. Tapi jangan minta gratisan, kasih imbalan uang ya.", "aksi": "saran_pandu_diterima"},
+			{"speaker": "player", "text": "Bener juga. Nanti aku hubungi temanku lewat HP pas keluar rumah, Bang."}
+		]}
+	},
+	"rani": {
+		"jemput_rani": {"start": [
+			{"speaker": "npc", "text": "Nah, akhirnya dateng juga. Aku udah nunggu dari tadi lho."},
+			{"speaker": "player", "text": "Maaf ya, Ran. Yuk kita ke booth!"},
+			{"speaker": "npc", "text": "Inget ya, upahnya Rp20.000. Jangan lupa!"},
+			{"speaker": "player", "text": "Tenang, pasti kubayar. Ayo berangkat!", "aksi": "rani_bergabung"}
+		]}
+	},
 }
 
 # Adegan non-NPC: telepon (gambar HP) dan monolog di booth.
@@ -186,9 +250,32 @@ const DIALOG_ADEGAN = {
 	]},
 	"telepon_booth_selesai": {"start": [
 		{"speaker": "player", "text": "Bang, kompor sama mejanya sudah kuperbaiki!"},
-		{"speaker": "npc", "text": "Hebat! Berarti tinggal jualan. Ingat, targetmu Rp800.000 dalam 10 hari.", "aksi": "mulai_berjualan"},
+		{"speaker": "npc", "text": "Hebat! Berarti tinggal jualan. Ingat, targetmu Rp800.000 dalam 5 hari.", "aksi": "mulai_berjualan"},
 		{"speaker": "player", "text": "Siap, Bang! Aku mulai sekarang!"}
-	]}
+	]},
+	"keluhan_hari_2": {"start": [
+		{"speaker": "player", "text": "Hoaaam... Aduh, badanku pegel semua."},
+		{"speaker": "player", "text": "Pelangganku makin banyak, tapi waktu untuk pembuatan makanannya sangat lambat."},
+		{"speaker": "player", "text": "Kalau begini terus aku kewalahan. Aku butuh saran dari Bang Pandu nih di lantai 2.", "aksi": "keluhan_hari_2_selesai"}
+	]},
+	"keluhan_hari_3": {"start": [
+		{"speaker": "player", "text": "Hoaaam... badanku pegal semua."},
+		{"speaker": "player", "text": "Kemarin jualan sendirian, beli bahan, masak, layanin pelanggan, semuanya sendiri."},
+		{"speaker": "player", "text": "Kalau begini terus aku bisa tumbang. Aku butuh bantuan..."},
+		{"speaker": "player", "text": "Coba cerita ke Bang Pandu ah.", "aksi": "keluhan_hari_3_selesai"}
+	]},
+	"telepon_rani": {"start": [
+		{"speaker": "player", "text": "Halo, Ran? Ini Arka."},
+		{"speaker": "npc", "text": "Oh, Arka. Ada apa pagi-pagi begini?"},
+		{"speaker": "player", "text": "Aku lagi jualan dan kewalahan sendirian. Bantuin aku dong!"},
+		{"speaker": "npc", "text": "Hah? Ogah ah, capek. Aku mau santai hari ini."},
+		{"speaker": "player", "text": "Ayolah Ran, sebentar aja..."},
+		{"speaker": "npc", "text": "Nggak mau, Ka."},
+		{"speaker": "player", "text": "Aku kasih upah deh, Rp20.000. Gimana?"},
+		{"speaker": "npc", "text": "Dua puluh ribu? ...Hmm. Oke deh, tapi beneran ya dibayar!"},
+		{"speaker": "player", "text": "Beneran! Aku jemput kamu ke Jalan 4 sekarang."},
+		{"speaker": "npc", "text": "Oke, aku tunggu di sana.", "aksi": "rani_setuju"}
+	]},
 }
 
 static func ambil_dialog(id_npc: String, hari: int, sudah_bicara: bool = false) -> Dictionary:
