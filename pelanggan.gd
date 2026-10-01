@@ -16,6 +16,10 @@ var apakah_di_depan = false
 var akhiran_npc: String = ""
 var pesanan_item = "Cilok" # Default pesanan: "Cilok", "Es Teh", "Piscok"
 
+var waypoint_antara: Vector2 = Vector2.ZERO
+var sudah_lewat_waypoint: bool = false
+var _target_antrean_akhir: Vector2 = Vector2.ZERO
+
 func _ready():
 	label_pesanan.hide()
 	tombol_layani.hide()
@@ -37,6 +41,10 @@ func _ready():
 	if timer_kesabaran:
 		timer_kesabaran.wait_time = 20.0
 		timer_kesabaran.start()
+
+func set_waypoint(pos_waypoint: Vector2):
+	waypoint_antara = pos_waypoint
+	sudah_lewat_waypoint = false
 
 func _process(delta):
 	if status == "JALAN":
@@ -61,6 +69,12 @@ func _process(delta):
 		# 3. Sampai di titik target
 		else:
 			position = target_posisi
+			if waypoint_antara != Vector2.ZERO and not sudah_lewat_waypoint:
+				sudah_lewat_waypoint = true
+				target_posisi = _target_antrean_akhir
+				status = "JALAN"
+				return
+
 			status = "NUNGGU"
 			_mainkan_animasi("diam")
 
@@ -82,8 +96,13 @@ func _mainkan_animasi(nama_anim: String):
 		animasi.play(nama_anim)
 
 func perbarui_target(koordinat_baru, urutan):
-	target_posisi = koordinat_baru
 	apakah_di_depan = (urutan == 0)
+	_target_antrean_akhir = koordinat_baru
+
+	if waypoint_antara != Vector2.ZERO and not sudah_lewat_waypoint:
+		target_posisi = waypoint_antara
+	else:
+		target_posisi = koordinat_baru
 
 	if position != target_posisi:
 		status = "JALAN"

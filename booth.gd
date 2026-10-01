@@ -51,7 +51,17 @@ func _ready():
 
 	_siapkan_minigame()
 	_siapkan_bar_perbaikan()
+	call_deferred("_sesuaikan_posisi_tombol_memasak")
 	toko_buka = Cerita.tahap_booth() == "siap"  # sementara, sampai fitur buka/tutup ada
+
+func _sesuaikan_posisi_tombol_memasak():
+	var map = get_tree().current_scene
+	if map:
+		var marker_tombol = map.get_node_or_null("Tombol Memasak")
+		if not marker_tombol:
+			marker_tombol = map.get_node_or_null("TombolMemasak")
+		if marker_tombol:
+			global_position = marker_tombol.global_position
 
 func _siapkan_minigame():
 	if scene_minigame_masak:
@@ -63,6 +73,25 @@ func _siapkan_minigame():
 			var res_masak = load(path_masak)
 			minigame_instance = res_masak.instantiate()
 			add_child(minigame_instance)
+			
+	if minigame_instance and minigame_instance.has_signal("panel_ditutup"):
+		if not minigame_instance.panel_ditutup.is_connected(_on_minigame_panel_ditutup):
+			minigame_instance.panel_ditutup.connect(_on_minigame_panel_ditutup)
+
+func _on_minigame_panel_ditutup():
+	var p = player_ref if (player_ref and is_instance_valid(player_ref)) else get_tree().get_first_node_in_group("Player")
+	if is_instance_valid(p):
+		if p.has_method("aktifkan_kontrol"):
+			p.aktifkan_kontrol()
+		elif p.has_method("set_bisa_gerak"):
+			p.set_bisa_gerak(true)
+		elif "bisa_gerak" in p:
+			p.bisa_gerak = true
+		
+		var cam = p.get_node_or_null("Camera2D")
+		if cam:
+			var tw = create_tween()
+			tw.tween_property(cam, "offset", Vector2.ZERO, 0.5)
 
 
 func _siapkan_bar_perbaikan():
@@ -99,23 +128,17 @@ func _process(delta: float):
 
 	var tahap: String = Cerita.tahap_booth()
 
-	if tahap == "siap":
-		if icon_e:
-			icon_e.show()
-		if baru_ditekan:
-			buka_minigame()
-		return
-
 	if icon_e:
 		icon_e.show()
 
-	# Ikon E hanya tampil kalau belum siap dipakai (biar tidak dobel sama ikon minigame lain)
-	if icon_e:
-		icon_e.visible = tahap != "siap"
-
 	if tahap == "siap":
-		return  # booth normal, tidak ada logika perbaikan lagi
-
+		if baru_ditekan:
+			if Global.hari == 3 and Cerita.punya_flag("rani_bergabung") and not Cerita.punya_flag("rani_di_spot"):
+				_arahkan_rani_ke_spot()
+			else:
+				buka_minigame()
+		return
+		
 	if sedang_memperbaiki:
 		if sekarang:
 			progres_perbaikan += delta
@@ -151,7 +174,49 @@ func _on_body_exited(body: Node2D):
 # ---------------- INTERAKSI NORMAL (booth sudah siap) ----------------
 func buka_minigame():
 	if minigame_instance and minigame_instance.has_method("buka_panel"):
+		var p = player_ref if (player_ref and is_instance_valid(player_ref)) else get_tree().get_first_node_in_group("Player")
+		if is_instance_valid(p):
+			var cam = p.get_node_or_null("Camera2D")
+			if cam:
+				var tw = create_tween()
+				tw.tween_property(cam, "offset", Vector2(150, 0), 0.8)
 		minigame_instance.buka_panel()
+
+
+func _arahkan_rani_ke_spot() -> void:
+	sibuk = true
+	var p = player_ref if (player_ref and is_instance_valid(player_ref)) else get_tree().get_first_node_in_group("Player")
+	if is_instance_valid(p) and p.has_method("set_bisa_gerak"):
+		p.set_bisa_gerak(false)
+	
+	var rani = get_tree().get_first_node_in_group("Rani")
+	if not rani:
+		var map = get_tree().current_scene
+		if map:
+			rani = map.get_node_or_null("rani")
+			if not rani:
+				rani = map.get_node_or_null("Rani")
+	
+	var map = get_tree().current_scene
+	var marker_spot = map.get_node_or_null("Spot Rani") if map else null
+	var pos_spot = marker_spot.global_position if marker_spot else Vector2(520, 167)
+	
+	if rani and is_instance_valid(rani):
+		if rani.has_method("jalan_ke_spot"):
+			await rani.jalan_ke_spot(pos_spot)
+		else:
+			rani.global_position = pos_spot
+	
+	Cerita.set_flag("rani_di_spot")
+	
+	if is_instance_valid(p):
+		if p.has_method("aktifkan_kontrol"):
+			p.aktifkan_kontrol()
+		elif p.has_method("set_bisa_gerak"):
+			p.set_bisa_gerak(true)
+		TeksMelayang.munculkan_di_sekitar(p, "Rani siap membantu! Tekan E untuk mulai berjualan", Color(0.6, 1.0, 0.6))
+	
+	sibuk = false
 
 
 # ---------------- ALUR CERITA / PERBAIKAN ----------------
@@ -216,6 +281,36 @@ func _selesai_perbaikan() -> void:
 	await get_tree().create_timer(0.6).timeout
 	await Cerita.mulai_telepon("telepon_booth_selesai")
 	toko_buka = true
+	
+	var map = get_tree().current_scene
+	if map == null:
+		sibuk = false
+		return
+	var marker_pindah_1 = map.get_node_or_null("Arka Pindah")
+	var marker_pindah_2 = map.get_node_or_null("Arka Pindah 2")
+	if not marker_pindah_2:
+		marker_pindah_2 = map.get_node_or_null("Arka Pindah2")
+		
+	var p = player_ref if (player_ref and is_instance_valid(player_ref)) else get_tree().get_first_node_in_group("Player")
+	
+	if is_instance_valid(p) and p.has_method("jalan_ke_titik"):
+		# 1. Jalan ke titik Arka Pindah (pertama)
+		if marker_pindah_1:
+			p.jalan_ke_titik(marker_pindah_1.global_position)
+			if p.has_signal("sampai_tujuan"):
+				await p.sampai_tujuan
+		
+		# 2. Jalan ke titik Arka Pindah 2 (kedua)
+		if is_instance_valid(p) and marker_pindah_2:
+			p.jalan_ke_titik(marker_pindah_2.global_position)
+			if p.has_signal("sampai_tujuan"):
+				await p.sampai_tujuan
+		elif is_instance_valid(p) and not marker_pindah_2 and marker_pindah_1:
+			# Fallback jika marker 2 belum ada: jalan ke posisi marker 1
+			pass
+		
+		buka_minigame()
+	
 	sibuk = false
 
 
@@ -253,7 +348,16 @@ func tambah_pelanggan_baru():
 		node_pelanggan.pelanggan_pergi.connect(_on_pelanggan_pergi)
 
 	get_parent().add_child(node_pelanggan)
-	node_pelanggan.global_position = global_position + titik_spawn
+	var map = get_tree().current_scene
+	var arah_5 = map.get_node_or_null("Arah 5")
+	var arah_2 = map.get_node_or_null("Arah 2")
+	if arah_5:
+		node_pelanggan.global_position = arah_5.global_position
+	else:
+		node_pelanggan.global_position = global_position + titik_spawn
+
+	if arah_2 and node_pelanggan.has_method("set_waypoint"):
+		node_pelanggan.set_waypoint(arah_2.global_position)
 	daftar_pelanggan.append(node_pelanggan)
 	perbarui_semua_antrean()
 
@@ -264,10 +368,26 @@ func _on_pelanggan_pergi(node_pelanggan: Node2D):
 		perbarui_semua_antrean()
 
 
+func get_titik_antrean(index: int) -> Vector2:
+	var map = get_tree().current_scene
+	var nama_node = "Pelanggan Antre" if index == 0 else "Pelanggan Antre " + str(index + 1)
+	var node_marker = map.get_node_or_null(nama_node)
+	if not node_marker and index > 0:
+		node_marker = map.get_node_or_null("Pelanggan Antre" + str(index + 1))
+	
+	if node_marker:
+		return node_marker.global_position
+	else:
+		var node_utama = map.get_node_or_null("Pelanggan Antre")
+		if node_utama:
+			return node_utama.global_position + (jarak_antrean * index)
+		else:
+			return global_position + titik_depan_booth + (jarak_antrean * index)
+
 func perbarui_semua_antrean():
 	for i in range(daftar_pelanggan.size()):
 		var p = daftar_pelanggan[i]
 		if is_instance_valid(p):
-			var pos_target = global_position + titik_depan_booth + (jarak_antrean * i)
+			var pos_target = get_titik_antrean(i)
 			if p.has_method("perbarui_target"):
 				p.perbarui_target(pos_target, i)

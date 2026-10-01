@@ -17,14 +17,20 @@ const DATA_OBJEKTIF = {
 	"temui_mang_cecep": "Temui Mang Cecep di Jalan 5",
 	"perbaiki_booth": "Perbaiki booth (tahan E selama 5 detik)",
 	"berjualan": "Mulai berjualan di booth",
+	"curhat_pandu": "Ceritakan keluh kesahmu ke Bang Pandu (lantai 2)",
+	"keluar_rumah": "Keluar rumah",
+	"jemput_rani": "Jemput Rani di Jalan 4",
 }
 
 const HARGA_SEWA_BOOTH: int = 10000
-const PATH_GAMBAR_HP: String = "res://Assets/hp.png"  # GANTI ke gambar HP-mu
+const PATH_GAMBAR_HP: String = "res://Assets/bg_Character/hape.png"  # GANTI ke gambar HP-mu
 const SCENE_LUAR: Array = ["res://node_2d.tscn", "res://map_2.tscn", "res://map_3.tscn", "res://map_4.tscn", "res://map_5.tscn"]
+const UPAH_RANI: int = 20000
+const PATH_PORTRAIT_ARKA: String = "res://Assets/bg_Character/ChatGPT Image Sep 20, 2026, 11_10_49 AM.png"  # GANTI ke portrait Arka-mu
+const NAMA_PENELEPON: Dictionary = {"telepon_rani": "Rani"}  # selain ini, penelepon = Bang Pandu
 # Suara saat uang bertambah
-const PATH_SFX_UANG: String = "res://Assets/SFX/Item_collected.mp3"
-const PATH_SFX_ITEM: String = "res://Assets/SFX/Item_collected.mp3"  # ganti kalau pakai file lain
+const PATH_SFX_UANG: String = "res://Assets/SFX/GettingMoney.wav"
+const PATH_SFX_ITEM: String = "res://Assets/SFX/pickupItem.wav"  # ganti kalau pakai file lain
 const VOLUME_SFX_DB: float = 0.0
 const BUS_SFX: String = "SFX"  # kalau bus ini tidak ada, otomatis pakai Master
 
@@ -38,7 +44,7 @@ const BUS_SFX: String = "SFX"  # kalau bus ini tidak ada, otomatis pakai Master
 #   "setelah_pandu" = Pandu setuju, kasur terbuka, objektif tidur
 #   "hari_1"        = sudah hari 1, tutorial Pandu selesai
 const MODE_UJI: bool = true
-const TAHAP_UJI: String = "perbaiki_booth"
+const TAHAP_UJI: String = "curhat_pandu"
 
 # ---------------- BATAS JAM TIDUR ----------------
 const JAM_BATAS_TIDUR: int = 21           # HARUS lebih besar dari JAM_BANGUN
@@ -107,8 +113,7 @@ func _dijalankan_langsung() -> bool:
 	return false
 
 
-const URUTAN_FLAG_UJI: Array = ["cutscene_hari_0", "uang_mama_diterima", "tawaran_pandu_diterima", "tutorial_booth_dimulai", "booth_disewa", "telepon_belanja", "bahan_dibeli", "telepon_ke_booth", "booth_rusak_ditemukan", "punya_obeng", "booth_diperbaiki"]
-
+const URUTAN_FLAG_UJI: Array = ["cutscene_hari_0", "uang_mama_diterima", "tawaran_pandu_diterima", "tutorial_booth_dimulai", "booth_disewa", "telepon_belanja", "bahan_dibeli", "telepon_ke_booth", "booth_rusak_ditemukan", "punya_obeng", "booth_diperbaiki", "keluhan_hari_3", "saran_pandu_diterima", "telepon_rani", "rani_bergabung"]
 func _uji_flag_sampai(jumlah: int, objektif: String) -> void:
 	Global.hari = 1
 	Global.uang = 50000
@@ -148,6 +153,15 @@ func _terapkan_mode_uji() -> void:
 			_uji_flag_sampai(10, "perbaiki_booth")
 		"booth_siap":
 			_uji_flag_sampai(11, "berjualan")
+		"curhat_pandu":
+			_uji_flag_sampai(12, "curhat_pandu")
+			Global.hari = 3
+		"keluar_rumah":
+			_uji_flag_sampai(13, "keluar_rumah")   # telepon Rani berbunyi begitu bebas di map luar
+			Global.hari = 3
+		"jemput_rani":
+			_uji_flag_sampai(14, "jemput_rani")    # F6 dari map_4.tscn
+			Global.hari = 3
 	_uang_terakhir = Global.uang
 	print("[Cerita] MODE UJI aktif, tahap: ", TAHAP_UJI)
 # ---------------- EFEK UANG ----------------
@@ -196,6 +210,8 @@ func dialog_tahap_untuk(id_npc: String, sekali: bool = true) -> Dictionary:
 # Dipakai NPC yang SUDAH pakai DataDialog.ambil_dialog() (Pandu, Pak Iwan):
 # dialog tahap cerita didahulukan, kalau tidak ada baru dialog harian biasa.
 func pilih_dialog(id_npc: String, hari: int, sudah_bicara: bool = false) -> Dictionary:
+	if id_npc == "rani" and punya_flag("telepon_rani") and not punya_flag("rani_bergabung"):
+		return DataDialog.DIALOG_TAHAP["rani"]["jemput_rani"]
 	var tahap := dialog_tahap_untuk(id_npc)
 	if not tahap.is_empty():
 		return tahap
@@ -230,6 +246,10 @@ func _pantau_telepon_otomatis() -> void:
 		id_telepon = "telepon_belanja"
 	elif punya_flag("bahan_dibeli") and not punya_flag("telepon_ke_booth"):
 		id_telepon = "telepon_ke_booth"
+	elif punya_flag("bahan_dibeli") and not punya_flag("telepon_ke_booth"):
+		id_telepon = "telepon_ke_booth"
+	elif punya_flag("saran_pandu_diterima") and not punya_flag("telepon_rani"):
+		id_telepon = "telepon_rani"
 	if id_telepon == "" or not _player_bebas():
 		return
 	_sedang_telepon = true
@@ -237,9 +257,36 @@ func _pantau_telepon_otomatis() -> void:
 	await get_tree().create_timer(0.8).timeout
 	while not _player_bebas():
 		await get_tree().process_frame
-	await mulai_telepon(id_telepon)
+	await mulai_telepon(id_telepon, NAMA_PENELEPON.get(id_telepon, "Bang Pandu"))
 	_sedang_telepon = false
 
+# Monolog Arka tanpa gambar HP: await Cerita.mulai_monolog("id_adegan")
+# Monolog Arka: await Cerita.mulai_monolog("id_adegan")
+# Portrait memakai gambar HP yang sama dengan mulai_telepon()
+# Monolog Arka tanpa gambar HP: await Cerita.mulai_monolog("id_adegan")
+func mulai_monolog(id_adegan: String) -> void:
+	var tree: Dictionary = DataDialog.DIALOG_ADEGAN.get(id_adegan, {})
+	if tree.is_empty():
+		push_warning("Adegan monolog tidak ditemukan: '%s'" % id_adegan)
+		return
+	while DialogBox.sedang_dialog:
+		await get_tree().process_frame
+	var potret: Texture2D = null
+	if ResourceLoader.exists(PATH_PORTRAIT_ARKA):
+		potret = load(PATH_PORTRAIT_ARKA)
+	_atur_gerak_player(false)
+	DialogBox.mulai_dialog(tree, null, potret, "", "Arka")
+	await DialogBox.dialog_selesai
+	_atur_gerak_player(true)
+
+
+# Adegan yang jalan setelah layar terang lagi di pagi hari baru
+func _saat_hari_dimulai(hari_baru: int) -> void:
+	match hari_baru:
+		3:
+			if not punya_flag("keluhan_hari_3"):
+				await get_tree().create_timer(0.5).timeout
+				await mulai_monolog("keluhan_hari_3")
 
 # Dialog dengan gambar HP. Bisa dipanggil dari mana saja: await Cerita.mulai_telepon("id")
 func mulai_telepon(id_telepon: String, nama_penelepon: String = "Bang Pandu") -> void:
@@ -442,7 +489,8 @@ func ganti_hari(paksa: bool = false, durasi_fade: float = 0.8, durasi_tahan: flo
 	if paksa:
 		_pulihkan_setelah_paksa(denda)
 
-
+	_saat_hari_dimulai(hari_baru)
+	
 func _pulihkan_setelah_paksa(denda: int) -> void:
 	var p = get_tree().get_first_node_in_group("Player")
 	if p == null:
@@ -577,6 +625,26 @@ func jalankan_aksi(nama_aksi: String) -> void:
 		"booth_diperbaiki":
 			set_flag("booth_diperbaiki")
 		"mulai_berjualan":
+			set_objektif("berjualan")
+		"keluhan_hari_3_selesai":
+			if punya_flag("keluhan_hari_3"):
+				return
+			set_flag("keluhan_hari_3")
+			set_objektif("curhat_pandu")
+		"saran_pandu_diterima":
+			if punya_flag("saran_pandu_diterima"):
+				return
+			set_flag("saran_pandu_diterima")
+			set_objektif("keluar_rumah")
+		"rani_setuju":
+			if punya_flag("rani_setuju"):
+				return
+			set_flag("rani_setuju")   # upah UPAH_RANI dibayar nanti, bukan sekarang
+			set_objektif("jemput_rani")
+		"rani_bergabung":
+			if punya_flag("rani_bergabung"):
+				return
+			set_flag("rani_bergabung")
 			set_objektif("berjualan")
 		_:
 			push_warning("Aksi dialog tidak dikenali: '%s'" % nama_aksi)

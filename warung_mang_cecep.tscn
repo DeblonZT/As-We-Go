@@ -2,11 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://v6b5bfq27pxr" path="res://Assets/Tilemap/TopDownHouse_FloorsAndWalls.png" id="1_e6jfm"]
 [ext_resource type="Texture2D" uid="uid://boj4ew0os4t80" path="res://Assets/Interior/TopDownHouse_FurnitureState1.png" id="2_2mukn"]
-[ext_resource type="Texture2D" uid="uid://cx27bue4dsexy" path="res://Assets/Karakter/Mang Cecep - Player.png" id="2_xhchi"]
+[ext_resource type="Texture2D" uid="uid://cx27bue4dsexy" path="res://Assets/Character/Mang Cecep - Player.png" id="2_xhchi"]
 [ext_resource type="Texture2D" uid="uid://cxhrd54ttpiv3" path="res://Assets/Interior/TopDownHouse_FurnitureState2.png" id="3_rgia2"]
 [ext_resource type="Texture2D" uid="uid://dc6j5h4kofboo" path="res://Assets/Interior/TopDownHouse_SmallItems.png" id="4_1crjv"]
 [ext_resource type="Texture2D" uid="uid://dvda7tkv1x0lm" path="res://Assets/Interior/furniture (107).png" id="5_rgia2"]
 [ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="8_5xfys"]
+[ext_resource type="Texture2D" uid="uid://dwfl1tdjk6a2x" path="res://Assets/bg_Character/Mang Cecep 2D.png" id="8_bi818"]
+[ext_resource type="Texture2D" uid="uid://dyvln60kvkun5" path="res://Assets/bg_Character/ChatGPT Image Sep 20, 2026, 11_10_49 AM.png" id="9_ocpmy"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="9_vcv70"]
 [ext_resource type="Script" uid="uid://c6on3277iy336" path="res://states/player.gd" id="10_pwsv2"]
 [ext_resource type="Texture2D" uid="uid://kbmyibs4j1ue" path="res://Assets/Arka - Player.png" id="11_kd4pg"]
@@ -946,6 +948,8 @@ tile_set = SubResource("TileSet_tamsi")
 position = Vector2(262, 78)
 scale = Vector2(1.1, 1.1)
 script = ExtResource("15_wmc_npc")
+gambar_portrait_npc = ExtResource("8_bi818")
+gambar_portrait_player = ExtResource("9_ocpmy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mang_cecep" unique_id=1489846176]
 position = Vector2(0, -10.90909)

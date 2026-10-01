@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal panel_ditutup
+
 @onready var panel_utama = $PanelUtama
 @onready var label_stok = $PanelUtama/VBoxContainer/LabelStok
 @onready var label_hasil = $PanelUtama/VBoxContainer/LabelHasil
@@ -18,6 +20,28 @@ var durasi_masak: float = 5.0
 
 func _ready():
 	hide()
+	
+	if panel_utama:
+		var style = StyleBoxFlat.new()
+		style.bg_color = Color(0.2, 0.5, 0.7, 0.9)
+		style.corner_radius_top_left = 10
+		style.corner_radius_top_right = 10
+		style.corner_radius_bottom_left = 10
+		style.corner_radius_bottom_right = 10
+		panel_utama.add_theme_stylebox_override("panel", style)
+		
+		# Kecilkan UI dengan scale 0.75 agar tampak lebih pas
+		panel_utama.scale = Vector2(0.75, 0.75)
+		panel_utama.anchor_left = 1.0
+		panel_utama.anchor_right = 1.0
+		panel_utama.anchor_top = 0.0
+		panel_utama.anchor_bottom = 0.0
+		
+		panel_utama.offset_left = -345
+		panel_utama.offset_top = 15
+		panel_utama.offset_right = 95
+		panel_utama.offset_bottom = 275
+
 	if tombol_masak_cilok:
 		tombol_masak_cilok.pressed.connect(_on_tombol_masak_cilok_pressed)
 	if tombol_buat_es_teh:
@@ -52,6 +76,7 @@ func buka_panel():
 
 func tutup_panel():
 	hide()
+	panel_ditutup.emit()
 
 func perbarui_tampilan():
 	if label_stok:

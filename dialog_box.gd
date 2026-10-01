@@ -24,9 +24,9 @@ var gambar_npc: Texture2D
 var gambar_player: Texture2D
 var nama_npc: String = "NPC"
 var nama_player: String = "Kamu"
-const PATH_SFX_MASUK: String = "res://Assets/SFX/dialog_masuk.wav"
-const PATH_SFX_KELUAR: String = "res://Assets/SFX/dialog_keluar.wav"
-const PATH_SFX_NEXT: String = "res://Assets/SFX/dialog_next.wav"
+const PATH_SFX_MASUK: String = "res://Assets/SFX/whoosh-sfx.mp3"
+const PATH_SFX_KELUAR: String = "res://Assets/SFX/whoosh-clean.mp3"
+const PATH_SFX_NEXT: String = "res://Assets/SFX/switch33.ogg"
 const VOLUME_SFX_DB: float = -6.0
 const BUS_SFX: String = "SFX"
 const JEDA_BARIS: float = 1.0  # sebelumnya 2.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmnlyael3uo30"
-path="res://.godot/imported/Rani.png-e06d952f9b0d9418fd3450effba31c70.ctex"
+uid="uid://djsdgd0m7u1tt"
+path="res://.godot/imported/Mama.png-dc82f74d0a072239bd317ecfdb88494f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Character/Rani.png"
-dest_files=["res://.godot/imported/Rani.png-e06d952f9b0d9418fd3450effba31c70.ctex"]
+source_file="res://Assets/bg_Character/Mama.png"
+dest_files=["res://.godot/imported/Mama.png-dc82f74d0a072239bd317ecfdb88494f.ctex"]
 
 [params]
 

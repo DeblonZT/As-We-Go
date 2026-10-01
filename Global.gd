@@ -48,6 +48,40 @@ func _pasang_fitur_map(scene_node: Node):
 						var booth_inst = booth_res.instantiate()
 						booth_inst.global_position = Vector2(420, 130) # Booth Arka di bagian atas (ada kompor & meja)
 						scene_node.add_child(booth_inst)
+		
+		# --- SPAWNER / KONTROL RANI (HARI 3) ---
+		if Global.hari == 3 and Cerita.punya_flag("rani_bergabung"):
+			if Cerita.punya_flag("rani_di_spot"):
+				# Jika sudah di spot, hanya muncul di map_3.tscn pada marker Spot Rani
+				if nama_file_scene == "map_3.tscn":
+					if not scene_node.has_node("rani") and not scene_node.has_node("Rani"):
+						if ResourceLoader.exists("res://rani.tscn"):
+							var rani_res = load("res://rani.tscn")
+							if rani_res:
+								var rani_inst = rani_res.instantiate()
+								var spot = scene_node.get_node_or_null("Spot Rani")
+								rani_inst.global_position = spot.global_position if spot else Vector2(520, 167)
+								scene_node.add_child(rani_inst)
+			else:
+				# Jika masih mengikuti player, spawn di scene map jika belum ada
+				if not scene_node.has_node("rani") and not scene_node.has_node("Rani"):
+					if ResourceLoader.exists("res://rani.tscn"):
+						var rani_res = load("res://rani.tscn")
+						if rani_res:
+							var rani_inst = rani_res.instantiate()
+							var p = scene_node.get_node_or_null("Player")
+							if not p:
+								p = get_tree().get_first_node_in_group("Player")
+							if p:
+								var arah_p = p.arah if "arah" in p else "bawah"
+								var offset = Vector2.ZERO
+								match arah_p:
+									"kanan": offset = Vector2(-32, 0)
+									"kiri": offset = Vector2(32, 0)
+									"atas": offset = Vector2(0, 32)
+									"bawah", _: offset = Vector2(0, -32)
+								rani_inst.global_position = p.global_position + offset
+							scene_node.add_child(rani_inst)
 
 func ubah_reputasi(jumlah: int) -> void:
 	reputasi_pelanggan = clampi(reputasi_pelanggan + jumlah, 0, 100)

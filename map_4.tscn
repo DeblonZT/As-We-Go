@@ -43,6 +43,8 @@
 [ext_resource type="Script" uid="uid://b6bcx5deymu0m" path="res://portal_b_4.gd" id="41_bhs6r"]
 [ext_resource type="Script" uid="uid://qmdlnijwg63v" path="res://portal_c_4.gd" id="42_5l2es"]
 [ext_resource type="Script" uid="uid://mvbcw2a3an85" path="res://lampu_jalan.gd" id="43_wf160"]
+[ext_resource type="PackedScene" uid="uid://bhfkm45rjmow7" path="res://rani.tscn" id="44_rani_scene"]
+[ext_resource type="Texture2D" uid="uid://c4qlaqf4owd5l" path="res://Assets/bg_Character/Rani 2D.png" id="45_5l2es"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3qqfg"]
 texture = ExtResource("1_ehrkn")
@@ -4888,6 +4890,10 @@ color = Color(1, 0.8666667, 0.6, 1)
 script = ExtResource("43_wf160")
 lebar_celah_atas = 0.05
 lebar_atas = 0.153
+
+[node name="rani" parent="." unique_id=1503583219 instance=ExtResource("44_rani_scene")]
+position = Vector2(208, 40)
+gambar_portrait_npc = ExtResource("45_5l2es")
 
 [node name="Arah 1" type="Marker2D" parent="." unique_id=509834163]
 position = Vector2(85, -105)

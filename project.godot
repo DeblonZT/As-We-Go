@@ -17,14 +17,14 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DialogBox="*uid://cypv1t8lf0xrg"
-TransitionScreen="*uid://ctl5x1bee33yc"
 Global="*uid://b0fn6uoy450k5"
+Musik="*uid://cjmuqewrfefmn"
+TransitionScreen="*uid://ctl5x1bee33yc"
+DialogBox="*uid://cypv1t8lf0xrg"
 Cerita="*uid://broxenu8a7qr6"
 MainUI="*uid://cbr6rona2tcq6"
 SiklusMalam="*uid://b781nfi6eoghj"
 PanelObjektif="*uid://ckekkovyrw0bx"
-Musik="*uid://cjmuqewrfefmn"
 
 [display]
 

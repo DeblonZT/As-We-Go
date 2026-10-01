@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmnlyael3uo30"
-path="res://.godot/imported/Rani.png-e06d952f9b0d9418fd3450effba31c70.ctex"
+uid="uid://bhfukhju7msft"
+path="res://.godot/imported/Markus.png-a263b5b0ece8ee45bb9f64202b318f3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Character/Rani.png"
-dest_files=["res://.godot/imported/Rani.png-e06d952f9b0d9418fd3450effba31c70.ctex"]
+source_file="res://Assets/bg_Character/Markus.png"
+dest_files=["res://.godot/imported/Markus.png-a263b5b0ece8ee45bb9f64202b318f3d.ctex"]
 
 [params]
 

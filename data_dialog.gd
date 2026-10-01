@@ -41,7 +41,7 @@ const DIALOG_NPC = {
 		}
 	},
 
-		"pandu": {
+	"pandu": {
 		0: {
 			"start": [
 				{"speaker": "player", "text": "Bang Pandu, aku boleh minta tolong ngga?"},
@@ -97,7 +97,7 @@ const DIALOG_NPC = {
 		}
 	},
 	
-		"pak_iwan": {
+	"pak_iwan": {
 		"default": {"start": [
 			{"speaker": "npc", "text": "Booth-nya jaga baik-baik ya, Nak."}
 		]}
@@ -110,6 +110,11 @@ const DIALOG_NPC = {
 	"mang_cecep": {
 		"default": {"start": [
 			{"speaker": "npc", "text": "Kalau ada yang rusak, bilang aja ke Mamang."}
+		]}
+	},
+	"rani": {
+		"default": {"start": [
+			{"speaker": "npc", "text": "Aku tunggu di sini ya, Ka."}
 		]}
 	},
 
@@ -156,7 +161,25 @@ const DIALOG_TAHAP = {
 			{"speaker": "npc", "text": "Kencangkan baut-bautnya, harusnya bisa dipakai lagi.", "aksi": "beri_obeng"},
 			{"speaker": "player", "text": "Makasih banyak, Mang!"}
 		]}
-	}
+	},
+	"pandu": {
+		"curhat_pandu": {"start": [
+			{"speaker": "player", "text": "Bang, aku mau cerita sebentar..."},
+			{"speaker": "npc", "text": "Kenapa, Ka? Mukamu kusut banget."},
+			{"speaker": "player", "text": "Jualan sendirian capek banget, Bang. Belanja, masak, layanin pelanggan, semuanya aku sendiri."},
+			{"speaker": "npc", "text": "Hahaha, wajar. Makanya pengusaha butuh tim."},
+			{"speaker": "npc", "text": "Coba ajak temanmu buat bantuin. Tapi jangan minta gratisan, kasih imbalan uang ya.", "aksi": "saran_pandu_diterima"},
+			{"speaker": "player", "text": "Bener juga. Nanti aku hubungi temanku lewat HP pas keluar rumah, Bang."}
+		]}
+	},
+	"rani": {
+		"jemput_rani": {"start": [
+			{"speaker": "npc", "text": "Nah, akhirnya dateng juga. Aku udah nunggu dari tadi lho."},
+			{"speaker": "player", "text": "Maaf ya, Ran. Yuk kita ke booth!"},
+			{"speaker": "npc", "text": "Inget ya, upahnya Rp20.000. Jangan lupa!"},
+			{"speaker": "player", "text": "Tenang, pasti kubayar. Ayo berangkat!", "aksi": "rani_bergabung"}
+		]}
+	},
 }
 
 # Adegan non-NPC: telepon (gambar HP) dan monolog di booth.
@@ -186,9 +209,27 @@ const DIALOG_ADEGAN = {
 	]},
 	"telepon_booth_selesai": {"start": [
 		{"speaker": "player", "text": "Bang, kompor sama mejanya sudah kuperbaiki!"},
-		{"speaker": "npc", "text": "Hebat! Berarti tinggal jualan. Ingat, targetmu Rp800.000 dalam 10 hari.", "aksi": "mulai_berjualan"},
+		{"speaker": "npc", "text": "Hebat! Berarti tinggal jualan. Ingat, targetmu Rp800.000 dalam 5 hari.", "aksi": "mulai_berjualan"},
 		{"speaker": "player", "text": "Siap, Bang! Aku mulai sekarang!"}
-	]}
+	]},
+		"keluhan_hari_3": {"start": [
+		{"speaker": "player", "text": "Hoaaam... badanku pegal semua."},
+		{"speaker": "player", "text": "Kemarin jualan sendirian, beli bahan, masak, layanin pelanggan, semuanya sendiri."},
+		{"speaker": "player", "text": "Kalau begini terus aku bisa tumbang. Aku butuh bantuan..."},
+		{"speaker": "player", "text": "Coba cerita ke Bang Pandu ah.", "aksi": "keluhan_hari_3_selesai"}
+	]},
+	"telepon_rani": {"start": [
+		{"speaker": "player", "text": "Halo, Ran? Ini Arka."},
+		{"speaker": "npc", "text": "Oh, Arka. Ada apa pagi-pagi begini?"},
+		{"speaker": "player", "text": "Aku lagi jualan dan kewalahan sendirian. Bantuin aku dong!"},
+		{"speaker": "npc", "text": "Hah? Ogah ah, capek. Aku mau santai hari ini."},
+		{"speaker": "player", "text": "Ayolah Ran, sebentar aja..."},
+		{"speaker": "npc", "text": "Nggak mau, Ka."},
+		{"speaker": "player", "text": "Aku kasih upah deh, Rp20.000. Gimana?"},
+		{"speaker": "npc", "text": "Dua puluh ribu? ...Hmm. Oke deh, tapi beneran ya dibayar!"},
+		{"speaker": "player", "text": "Beneran! Aku jemput kamu ke Jalan 4 sekarang."},
+		{"speaker": "npc", "text": "Oke, aku tunggu di sana.", "aksi": "rani_setuju"}
+	]},
 }
 
 static func ambil_dialog(id_npc: String, hari: int, sudah_bicara: bool = false) -> Dictionary:

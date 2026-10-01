@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dyvln60kvkun5" path="res://Assets/bg_Character/ChatGPT Image Sep 20, 2026, 11_10_49 AM.png" id="12_0hf4d"]
 [ext_resource type="Texture2D" uid="uid://kbmyibs4j1ue" path="res://Assets/Arka - Player.png" id="12_ndxt1"]
 [ext_resource type="Script" uid="uid://cuckm44wo0fc2" path="res://pak_iwan.gd" id="12_rfkob"]
+[ext_resource type="Texture2D" uid="uid://c2rash68yjjup" path="res://Assets/bg_Character/Pak Iwan.png" id="13_rfkob"]
 [ext_resource type="Texture2D" uid="uid://5c0srbjikvcn" path="res://Assets/Character/Pak Iwan.png" id="14_ed1d5"]
 [ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="14_ekprn"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="15_ed1d5"]
@@ -1723,6 +1724,7 @@ tile_set = SubResource("TileSet_xn1gd")
 position = Vector2(264, 59)
 scale = Vector2(1.1, 1.1)
 script = ExtResource("12_rfkob")
+gambar_portrait_npc = ExtResource("13_rfkob")
 gambar_portrait_player = ExtResource("12_0hf4d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="pak_iwan" unique_id=1727366982]

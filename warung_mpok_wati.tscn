@@ -19,6 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://kbmyibs4j1ue" path="res://Assets/Arka - Player.png" id="17_sg5ty"]
 [ext_resource type="Script" uid="uid://uwkf1gsjjmg8" path="res://mpok_wati.gd" id="18_k70xp"]
 [ext_resource type="Texture2D" uid="uid://dyvln60kvkun5" path="res://Assets/bg_Character/ChatGPT Image Sep 20, 2026, 11_10_49 AM.png" id="20_051os"]
+[ext_resource type="Texture2D" uid="uid://dqyyo6jtpo48d" path="res://Assets/bg_Character/Mpok Wati 2D.png" id="20_lcsxp"]
+[ext_resource type="Texture2D" uid="uid://ugc0ajinjl6d" path="res://Assets/Character/Mpok Wati (1).png" id="21_051os"]
+[ext_resource type="Script" uid="uid://cpg5sc066k5p2" path="res://animated_npc.gd" id="22_lcsxp"]
 [ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="22_n2o5k"]
 [ext_resource type="PackedScene" uid="uid://c51gke2pxdqsq" path="res://toko_mpok_wati.tscn" id="23_m3axc"]
 [ext_resource type="Script" uid="uid://doa724igahq02" path="res://portal_kemap3WarungMW.gd" id="24_ugnhs"]
@@ -2173,6 +2176,103 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2r2oe"]
 radius = 6.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xavnl"]
+atlas = ExtResource("21_051os")
+region = Rect2(0, 50, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7wpf"]
+atlas = ExtResource("21_051os")
+region = Rect2(48, 50, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7mw3"]
+atlas = ExtResource("21_051os")
+region = Rect2(96, 50, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36vnh"]
+atlas = ExtResource("21_051os")
+region = Rect2(144, 50, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e63a4"]
+atlas = ExtResource("21_051os")
+region = Rect2(192, 50, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tiad"]
+atlas = ExtResource("21_051os")
+region = Rect2(240, 50, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nagn8"]
+atlas = ExtResource("21_051os")
+region = Rect2(0, 0, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh7hl"]
+atlas = ExtResource("21_051os")
+region = Rect2(48, 0, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1bvl"]
+atlas = ExtResource("21_051os")
+region = Rect2(96, 0, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fopd"]
+atlas = ExtResource("21_051os")
+region = Rect2(144, 0, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcc4o"]
+atlas = ExtResource("21_051os")
+region = Rect2(192, 0, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmty5"]
+atlas = ExtResource("21_051os")
+region = Rect2(240, 0, 48, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h6tt4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xavnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7wpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7mw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36vnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e63a4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tiad")
+}],
+"loop": 1,
+"name": &"diam_kanan",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nagn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh7hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1bvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fopd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcc4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmty5")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ftqqa"]
 radius = 6.6115704
 height = 14.87603
@@ -2230,7 +2330,14 @@ position_smoothing_enabled = true
 position = Vector2(200, 22)
 scale = Vector2(1.1, 1.1)
 script = ExtResource("18_k70xp")
+gambar_portrait_npc = ExtResource("20_lcsxp")
 gambar_portrait_player = ExtResource("20_051os")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mpok_wati" unique_id=616297794]
+scale = Vector2(1.1, 1.1)
+sprite_frames = SubResource("SpriteFrames_h6tt4")
+animation = &"idle"
+script = ExtResource("22_lcsxp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mpok_wati" unique_id=126517413]
 position = Vector2(0.90908754, 4.545454)
