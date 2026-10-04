@@ -24,6 +24,7 @@ const DATA_BARANG = {
 
 func _ready():
 	hide()
+	visibility_changed.connect(_on_visibility_changed)
 	_pastikan_popup()
 	_hubungkan_tombol_jumlah()
 	update_ui_uang()
