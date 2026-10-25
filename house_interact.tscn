@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://jvfbutihik65"]
+
+[ext_resource type="Script" uid="uid://0uesxlwt6bmv" path="res://house_interact.gd" id="1_vyryy"]
+[ext_resource type="Texture2D" uid="uid://b34e07qvecrem" path="res://Assets/object/rumah_arka.png" id="2_ajv58"]
+[ext_resource type="Texture2D" uid="uid://b67twycg0x3la" path="res://Assets/Icons/keyboard_e.png" id="3_0w2jl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w2jl"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(0, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fh3r"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(150, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1dl8"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(300, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f76uk"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(450, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vvuv"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(600, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyx6c"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(750, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk4tk"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(900, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rufly"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(1050, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnkse"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(1050, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fs8j"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(1200, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlwpx"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(1350, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8b63"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(1500, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20us5"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(1650, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_175hx"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(1800, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyml6"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(1950, 0, 150, 184)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw0o2"]
+atlas = ExtResource("2_ajv58")
+region = Rect2(2100, 0, 150, 184)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i5miy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0w2jl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fh3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1dl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f76uk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vvuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyx6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk4tk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rufly")
+}],
+"loop": 0,
+"name": &"buka_pintu",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnkse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fs8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlwpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8b63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20us5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_175hx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyml6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw0o2")
+}],
+"loop": 0,
+"name": &"tutup_pintu",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5miy"]
+size = Vector2(55, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52jt1"]
+size = Vector2(96.5, 52)
+
+[node name="HouseInteract" type="StaticBody2D" unique_id=1093150072]
+y_sort_enabled = true
+position = Vector2(237, 73)
+script = ExtResource("1_vyryy")
+
+[node name="SpriteRumah" type="AnimatedSprite2D" parent="." unique_id=457403931]
+position = Vector2(7.6293945e-06, 0)
+sprite_frames = SubResource("SpriteFrames_i5miy")
+animation = &"buka_pintu"
+offset = Vector2(0, -40)
+
+[node name="TembokCollusion" type="CollisionShape2D" parent="." unique_id=449124328]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_i5miy")
+
+[node name="AreaPintu" type="Area2D" parent="." unique_id=1297681282]
+position = Vector2(0, 6.5)
+
+[node name="IconE" type="Sprite2D" parent="AreaPintu" unique_id=146334899]
+position = Vector2(5.9604645e-08, -58)
+scale = Vector2(0.43261716, 0.41210938)
+texture = ExtResource("3_0w2jl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPintu" unique_id=1218416262]
+position = Vector2(0.25, 15)
+shape = SubResource("RectangleShape2D_52jt1")
+
+[node name="TitikJalanMasuk" type="Marker2D" parent="." unique_id=2020902142]
+position = Vector2(0, 16.5)
+
+[connection signal="body_entered" from="AreaPintu" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="AreaPintu" to="." method="_on_area_pintu_body_exited"]

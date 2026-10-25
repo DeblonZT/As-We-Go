@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://cwk1tyd74i4ts"]
+
+[ext_resource type="Script" uid="uid://co71g3xfevpt3" path="res://panel_upgrade.gd" id="1_wevvm"]
+[ext_resource type="Texture2D" uid="uid://05pu6rj3coli" path="res://Assets/Menu baru.png" id="2_frnwa"]
+[ext_resource type="PackedScene" path="res://popup_notifikasi.tscn" id="3_popup"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygykl"]
+bg_color = Color(0.99215686, 0.9647059, 0.8901961, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.8509804, 0.48235294, 0.16078432, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tamsi"]
+bg_color = Color(0.8509804, 0.48235294, 0.16078432, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka6xa"]
+bg_color = Color(0.88151485, 0.22652455, 0.22652455, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tamsi"]
+atlas = ExtResource("2_frnwa")
+region = Rect2(0, 44.79364, 53.718643, 53.802185)
+
+[node name="LayerTokoMangCecep" type="CanvasLayer" unique_id=345506797]
+
+[node name="PanelUpgrade" type="Panel" parent="." unique_id=460948846]
+offset_left = 204.0
+offset_top = 55.0
+offset_right = 541.0
+offset_bottom = 232.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ygykl")
+script = ExtResource("1_wevvm")
+
+[node name="HeaderBiru" type="Panel" parent="PanelUpgrade" unique_id=541827117]
+layout_mode = 0
+offset_top = -21.0
+offset_right = 337.0
+offset_bottom = 13.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tamsi")
+
+[node name="Label" type="Label" parent="PanelUpgrade" unique_id=2084624298]
+layout_mode = 0
+offset_left = 131.0
+offset_top = -15.0
+offset_right = 206.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "UPGRADE"
+
+[node name="BtnClose" type="Button" parent="PanelUpgrade" unique_id=601911049]
+layout_mode = 0
+offset_left = 297.99997
+offset_top = -19.0
+offset_right = 328.9091
+offset_bottom = 8.0
+scale = Vector2(1.1, 1.1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ka6xa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ka6xa")
+text = "X"
+
+[node name="LabelUang" type="Label" parent="PanelUpgrade" unique_id=1153078478]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 18.0
+offset_right = 52.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelUpgrade" unique_id=1891797377]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 38.0
+offset_right = 327.0
+offset_bottom = 168.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelUpgrade/ScrollContainer" unique_id=699318836]
+custom_minimum_size = Vector2(255, 0)
+layout_mode = 2
+
+[node name="HboxKompor" type="HBoxContainer" parent="PanelUpgrade/ScrollContainer/VBoxContainer" unique_id=2002029396]
+custom_minimum_size = Vector2(245, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelUpgrade/ScrollContainer/VBoxContainer/HboxKompor" unique_id=1849735342]
+layout_mode = 2
+texture = SubResource("AtlasTexture_tamsi")
+
+[node name="Label" type="Label" parent="PanelUpgrade/ScrollContainer/VBoxContainer/HboxKompor" unique_id=1243725455]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Kompor  "
+
+[node name="BtnKompor1" type="Button" parent="PanelUpgrade/ScrollContainer/VBoxContainer/HboxKompor" unique_id=1880540703]
+custom_minimum_size = Vector2(55, 60)
+layout_mode = 2
+text = "lvl 1
+50rb"
+
+[node name="BtnKompor2" type="Button" parent="PanelUpgrade/ScrollContainer/VBoxContainer/HboxKompor" unique_id=1198942261]
+custom_minimum_size = Vector2(55, 60)
+layout_mode = 2
+text = "lvl 2
+100rb"
+
+[node name="BtnKompor3" type="Button" parent="PanelUpgrade/ScrollContainer/VBoxContainer/HboxKompor" unique_id=642196500]
+custom_minimum_size = Vector2(55, 60)
+layout_mode = 2
+text = "lvl 3
+200rb"
+
+[node name="HboxMeja" type="HBoxContainer" parent="PanelUpgrade/ScrollContainer/VBoxContainer" unique_id=902936389]
+custom_minimum_size = Vector2(245, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelUpgrade/ScrollContainer/VBoxContainer/HboxMeja" unique_id=950329683]
+layout_mode = 2
+texture = SubResource("AtlasTexture_tamsi")
+
+[node name="Label" type="Label" parent="PanelUpgrade/ScrollContainer/VBoxContainer/HboxMeja" unique_id=1341752705]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Meja"
+
+[node name="BtnMeja1" type="Button" parent="PanelUpgrade/ScrollContainer/VBoxContainer/HboxMeja" unique_id=1649577638]
+custom_minimum_size = Vector2(55, 60)
+layout_mode = 2
+text = "lvl 1
+40rb"
+
+[node name="BtnMeja2" type="Button" parent="PanelUpgrade/ScrollContainer/VBoxContainer/HboxMeja" unique_id=2069536406]
+custom_minimum_size = Vector2(55, 60)
+layout_mode = 2
+text = "lvl 2
+80rb"
+
+[node name="BtnMeja3" type="Button" parent="PanelUpgrade/ScrollContainer/VBoxContainer/HboxMeja" unique_id=293680331]
+custom_minimum_size = Vector2(55, 60)
+layout_mode = 2
+text = "lvl 3
+150rb"
+
+[node name="PopupNotifikasi" parent="." instance=ExtResource("3_popup")]
+
+[connection signal="pressed" from="PanelUpgrade/BtnClose" to="PanelUpgrade" method="_on_btn_close_pressed"]
+[connection signal="pressed" from="PanelUpgrade/ScrollContainer/VBoxContainer/HboxKompor/BtnKompor1" to="PanelUpgrade" method="_on_btn_kompor_1_pressed"]
+[connection signal="pressed" from="PanelUpgrade/ScrollContainer/VBoxContainer/HboxKompor/BtnKompor2" to="PanelUpgrade" method="_on_btn_kompor_2_pressed"]
+[connection signal="pressed" from="PanelUpgrade/ScrollContainer/VBoxContainer/HboxKompor/BtnKompor3" to="PanelUpgrade" method="_on_btn_kompor_3_pressed"]
+[connection signal="pressed" from="PanelUpgrade/ScrollContainer/VBoxContainer/HboxMeja/BtnMeja1" to="PanelUpgrade" method="_on_btn_meja_1_pressed"]
+[connection signal="pressed" from="PanelUpgrade/ScrollContainer/VBoxContainer/HboxMeja/BtnMeja2" to="PanelUpgrade" method="_on_btn_meja_2_pressed"]
+[connection signal="pressed" from="PanelUpgrade/ScrollContainer/VBoxContainer/HboxMeja/BtnMeja3" to="PanelUpgrade" method="_on_btn_meja_3_pressed"]

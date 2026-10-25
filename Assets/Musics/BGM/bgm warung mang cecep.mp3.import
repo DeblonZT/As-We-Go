@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fhy6x6wp21ll"
+path="res://.godot/imported/bgm warung mang cecep.mp3-5952ef22c255c3dd084b5378cd042fec.mp3str"
+
+[deps]
+
+source_file="res://Assets/Musics/BGM/bgm warung mang cecep.mp3"
+dest_files=["res://.godot/imported/bgm warung mang cecep.mp3-5952ef22c255c3dd084b5378cd042fec.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
